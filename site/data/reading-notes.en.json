@@ -1,0 +1,710 @@
+{
+  "schema_version": "1.0",
+  "notes": {
+    "D01": {
+      "contribution": "Establishes a widely used face-manipulation benchmark for reproducible comparison.",
+      "limitations": "Older manipulation methods and limited attack coverage do not represent contemporary real-time financial injection attacks.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nProvides an initial benchmark for financial face-forgery testing; financial transfer is an interpretation, with no financial-workflow experiments."
+    },
+    "D02": {
+      "contribution": "Reduces conspicuous artifacts through higher-quality synthesis, exposing existing detectors' generalization limitations.",
+      "limitations": "Celebrity videos differ from remote-account-opening capture conditions and do not model the complete business attack chain.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay inform evaluation of high-fidelity face swapping in remote identity verification; applicability to finance requires validation."
+    },
+    "D03": {
+      "contribution": "Incorporates practical degradations, including video compression and blur, into benchmark design.",
+      "limitations": "Realistic degradations do not constitute tests of camera injection, client tampering or payment approval.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay inform transmission-distortion tests for financial video identity verification; this is a transfer interpretation."
+    },
+    "D04": {
+      "contribution": "Extends evaluation to complex face forgeries circulating online with unknown origins.",
+      "limitations": "Limited scale and difficult provenance and label verification constrain the benchmark; internet distributions differ from banking clients.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay provide an external stress test for financial deepfake detectors; financial transfer requires validation."
+    },
+    "D05": {
+      "contribution": "Provides large-scale consented video recordings and analyzes detection-challenge methods.",
+      "limitations": "This is a technical-report preprint; dataset scale does not establish secure approval in financial workflows.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay support large-scale offline training and cross-domain experiments for financial identity-verification models; this is a transfer interpretation."
+    },
+    "D06": {
+      "contribution": "Unifies authenticity classification, forgery-type classification and localization in a large-scale benchmark.",
+      "limitations": "Localization labels and classification scores are not connected to financial loss, customer false rejection or system bypass.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay inform interpretable evidence and localized-forgery analysis in financial verification; financial transfer requires validation."
+    },
+    "D07": {
+      "contribution": "Reduces unfair comparisons caused by differences in data pipelines and experimental settings.",
+      "limitations": "A standardized visual benchmark cannot replace attack-chain or financial-workflow testing.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nInforms reproducible comparison protocols for financial verification; this is methodological transfer rather than financial deployment evidence."
+    },
+    "D08": {
+      "contribution": "Exposes the limited coverage of training and testing only on older face-swap datasets.",
+      "limitations": "Even diverse generators do not cover every financial terminal, real-time interaction or injection pathway.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay inform a financial threat-coverage matrix for unseen generators, reenactment and full-face synthesis; this is a transfer interpretation."
+    },
+    "D09": {
+      "contribution": "Expands generator and content diversity and evaluates multimodal large models for deepfake recognition.",
+      "limitations": "The benchmark includes general generated videos; face-verification applicability, prompt stability and computational cost require separate testing.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nProvides context for newer generated videos and large-model evaluation; financial applicability remains a transfer interpretation."
+    },
+    "D10": {
+      "contribution": "Shifts attention from generator-specific artifacts to more general image-blending cues.",
+      "limitations": "The method depends on blending; full-face synthesis, absent blending boundaries or re-rendering may weaken the cue.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay provide a face-swap detection branch in financial verification. Absence of a detected blending boundary is not assurance of genuine identity."
+    },
+    "D11": {
+      "contribution": "Distinguishes physical presentation attacks, adversarial attacks and digital manipulation, and studies digital-manipulation detection and localization.",
+      "limitations": "The paper focuses on digital manipulation; it does not establish a joint solution to presentation attacks or adversarial recognition attacks.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nAccess control and payment are explicitly mentioned as background, but experiments do not test financial workflows; deployment applicability remains an inference."
+    },
+    "D12": {
+      "contribution": "Models subtle local-artifact recognition as fine-grained classification.",
+      "limitations": "Attention regions may exploit dataset-specific texture; unseen generators and changes in terminals require renewed evaluation.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay inform facial-region evidence fusion and explanations for manual review; financial transfer requires validation."
+    },
+    "D13": {
+      "contribution": "Uses local neighborhood relationships to detect subtle manipulation anomalies with weak supervision.",
+      "limitations": "Local anomalies and high-pass cues can be affected by heavy compression, low-resolution capture and smoothing.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nA candidate for low-cost verification-frame detection; low false-positive rates on actual terminals require financial validation."
+    },
+    "D14": {
+      "contribution": "Demonstrates the complementary value of frequency information for subtle manipulation detection in compressed video.",
+      "limitations": "Spectra also encode compression and device characteristics; channel differences must not be mistaken for fraud.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay inform complementary spatial and frequency analysis along compressed financial-verification channels; financial transfer requires validation."
+    },
+    "D15": {
+      "contribution": "Explains detectable frequency patterns through generator architecture.",
+      "limitations": "The study centers on GAN-generated still images and does not directly cover all face-swap videos, diffusion or flow-matching models.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nProvides structural cues for synthetic portraits and faces; usefulness in financial workflows remains an inference."
+    },
+    "D16": {
+      "contribution": "Reduces dependence on generator-specific color and texture.",
+      "limitations": "High-frequency evidence can be contaminated by beautification, compression and changes in terminal noise.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay inform device-domain transfer and image-pipeline stability in financial verification; this is a transfer interpretation."
+    },
+    "D17": {
+      "contribution": "Uses local pixel dependencies to characterize structural artifacts across GAN and diffusion generators.",
+      "limitations": "Architectural changes and postprocessing may alter local structure; results for general generated images need separate testing on localized face manipulations.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nExtends discussion of structural evidence against new generators in financial verification; financial transfer requires validation."
+    },
+    "D18": {
+      "contribution": "Analyzes spectral bias and reduces excessive dependence on particular frequency components.",
+      "limitations": "Mitigating spectral bias does not remove device, skin-tone, encoder or workflow-distribution biases.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay inform generalization across phones and encoders in financial verification; this is a transfer interpretation."
+    },
+    "D19": {
+      "contribution": "Introduces physiological signals as complementary evidence of synthetic portrait-video authenticity.",
+      "limitations": "Illumination, motion and compression can damage weak signals in genuine videos; physiological consistency does not establish identity or capture provenance.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay complement PAD research, but replayed genuine videos can retain physiological signals; financial applicability remains an inference."
+    },
+    "D20": {
+      "contribution": "Uses higher-level mouth-motion semantics to improve robustness across manipulations and degradations.",
+      "limitations": "Visible mouths and sufficient temporal evidence are required; modern lip-sync synthesis, silent verification and occlusions require renewed evaluation.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay provide mouth-behavior evidence for financial video verification; financial transfer requires validation."
+    },
+    "D21": {
+      "contribution": "Learns more robust authenticity representations from normal facial behavior and cross-modal correspondence.",
+      "limitations": "Pretraining domains and speaking behavior can introduce bias; short or silent financial-verification clips may differ.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay support learning normal behavior from consented verification videos; this financial extension requires appropriate data authorization and validation."
+    },
+    "D22": {
+      "contribution": "Detects swapping and reenactment using identity-specific speaking dynamics, reducing dependence on particular forgery generators.",
+      "limitations": "Availability of genuine reference data, authenticity of enrolled identities and natural behavioral changes affect deployment.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay inform reference-identity verification for high-risk customers and corporate representatives; financial transfer requires validation."
+    },
+    "D23": {
+      "contribution": "Adds semantic identity consistency to low-level artifacts under image degradation and cross-dataset evaluation.",
+      "limitations": "Celebrity reference-identity settings differ from first-time account opening; full-face synthesis and poisoned identity references require additional tests.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay inform account verification using an existing trusted identity template; this is a financial transfer interpretation."
+    },
+    "D24": {
+      "contribution": "Detects identity replacement through implicit identity information retained during face swapping.",
+      "limitations": "Identity assumptions for swapping do not necessarily apply to reenactment or full-face synthesis.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay support targeted detection of face swaps used for account impersonation; financial transfer requires validation."
+    },
+    "D25": {
+      "contribution": "Shows that identity shortcuts can undermine detector generalization.",
+      "limitations": "Suppressing identity bias must be distinguished from deliberately using trusted identity references; identity information should not be discarded universally.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nFinancial evaluation should separate training and test identities and independently test identity-agnostic detection and reference-identity verification."
+    },
+    "D26": {
+      "contribution": "Simulates generic blending and statistical anomalies to reduce dependence on known generators.",
+      "limitations": "Self-blending distributions may not cover unblended full-face synthesis or real interactive attacks.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nA candidate for synthetic training when genuine financial attack samples are scarce; this is a transfer interpretation."
+    },
+    "D27": {
+      "contribution": "Combines synthetic-forgery diversity with detector sensitivity to forgery variations.",
+      "limitations": "The augmentation space remains bounded by its design; unknown attacks and workflow false alarms require independent validation.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nDigital-payment risks are mentioned as background, without financial-workflow experiments; improved robustness to unknown financial forgeries remains a transfer interpretation."
+    },
+    "D28": {
+      "contribution": "Separates method-specific information and exploits common forgery features to improve detection of unseen manipulations.",
+      "limitations": "Common features arise from observed training methods; newer generators and financial-terminal shifts still need testing.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay inform feature design for joint training across financial attack types; financial transfer requires validation."
+    },
+    "D29": {
+      "contribution": "Expands the forgery-representation space to address training-test distribution mismatch.",
+      "limitations": "Latent interpolation may not correspond to realistic financial attacks; coverage of added features requires validation.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay inform cross-generator training under scarce financial attack data; this is a transfer interpretation."
+    },
+    "D30": {
+      "contribution": "Targets subtle spatiotemporal inconsistencies and uses synthesized videos to reduce overfitting.",
+      "limitations": "High-quality real-time generators may repair these cues; low-frame-rate financial videos and inference latency require separate evaluation.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay inform continuous-video evidence and unseen-generator testing in remote verification; financial transfer requires validation."
+    },
+    "D31": {
+      "contribution": "Extends self-blending to video and balances spatial and temporal cues.",
+      "limitations": "Lightweight adaptation does not establish financial-terminal latency or low false-positive performance; continuous verification requires protocol tests.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nInforms model-efficiency and continuous-evidence design for real-time or near-real-time financial video verification; this is a transfer interpretation."
+    },
+    "D32": {
+      "contribution": "Combines local sensitivity with global distribution expansion to improve cross-manipulation detection.",
+      "limitations": "Large pretrained models may retain semantic and identity biases; financial fairness and threshold calibration require evaluation.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay inform local-global fusion for cross-domain financial detection; financial transfer requires validation."
+    },
+    "D33": {
+      "contribution": "Simulates unseen forgeries using anomalous samples near the boundaries of known clusters.",
+      "limitations": "Simulated anomalies do not establish coverage of all unknown attacks; low false-positive operating points and rejection mechanisms require testing.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay inform open-set detection and uncertainty-based review of unknown financial forgeries; this is a transfer interpretation."
+    },
+    "D34": {
+      "contribution": "Explores preserving prior knowledge and generalizing to unknown forgeries during continual detector updates.",
+      "limitations": "Sequential-task benchmarks do not reproduce financial concept drift; poisoning, threshold drift and post-update regressions require controls.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay inform long-term maintenance and version rollback for financial-security detectors; financial transfer requires validation."
+    },
+    "D35": {
+      "contribution": "Extends authenticity classification to attribution of unseen forgery techniques.",
+      "limitations": "Model or technique attribution does not identify offenders and is not equivalent to judicial-grade evidence.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay assist tool-family analysis and post-event financial forensics; this financial use remains an inference."
+    },
+    "D36": {
+      "contribution": "Uses correspondence between audio and facial motion to detect single-modality or joint forgeries.",
+      "limitations": "Missing audio, languages, synchronization errors and synchronized audiovisual generation must be addressed.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay provide multimodal evidence for financial video support, identity verification and impersonated remote instructions; financial transfer requires validation."
+    },
+    "D37": {
+      "contribution": "Extends detection to audiovisual forgeries occupying only small segments of otherwise genuine long videos.",
+      "limitations": "Generated datasets differ from natural financial attacks; temporal-localization metrics cannot replace authorization decisions.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay address localized changes to authorization statements, amounts or recipient information in video; this is a financial transfer interpretation."
+    },
+    "D38": {
+      "contribution": "Provides multimodal data for voice impersonation, face swapping and combined forgery.",
+      "limitations": "Celebrity videos and limited generators do not represent all languages, devices and interaction conditions in financial verification.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay support joint audiovisual detection of remote financial identity impersonation; financial transfer requires validation."
+    },
+    "D39": {
+      "contribution": "Combines inversion-induced discrepancies with analysis-model audiovisual attention; studies GAN, diffusion and flow-matching manipulation and introduces MMDF.",
+      "limitations": "Requires an available analysis model and additional computation, not access to the attacker generator. Genuine inputs outside the analysis-model distribution require controls.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay inform evaluation of audio-driven digital humans, synchronized forgeries and newer generative paradigms in finance; this is a transfer interpretation."
+    },
+    "D40": {
+      "contribution": "Finds that strong classification can coexist with poorly aligned explanations, including strong random-feature baselines; complementary representations do not necessarily improve fusion.",
+      "limitations": "Discrimination, explanatory grounding and transfer are separate properties; an aggregate score alone does not establish the authenticity of the claimed evidence.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nInforms multimodal-detector selection, spurious-correlation audits and explanation validation in finance; financial transfer requires validation."
+    },
+    "D41": {
+      "contribution": "Combines subtle forgery cues with identity-text prompts and evaluates swapping and full-face generation.",
+      "limitations": "Identity prompts may introduce additional reference requirements; text semantics and genuine fraud evidence require separate validation.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay inform integration of enrolled identity references with vision-language detection in finance; this is a transfer interpretation."
+    },
+    "D42": {
+      "contribution": "Combines authenticity decisions with textual evidence descriptions to improve generalization and readability.",
+      "limitations": "Descriptions may contain language-model hallucinations or unfaithful explanations and cannot directly justify financial rejection.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay support human review if explanation faithfulness and evidence auditability are validated; financial transfer requires validation."
+    },
+    "D43": {
+      "contribution": "Detects a small number of manipulated faces within a video, distinguishing video-level from face-level authenticity.",
+      "limitations": "Multi-person scenes differ from single-person account opening; the identity targeted by detection must be explicit.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay address impersonation in multi-person video meetings, corporate authorization and remote verification; financial transfer requires validation."
+    },
+    "D44": {
+      "contribution": "Supports cross-domain comparison across forgery tasks, linking face and identity-document analysis.",
+      "limitations": "This is general image forensics rather than a face-specific method; joint cross-domain evaluation differs from end-to-end attacks on financial enrollment.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay inform coordinated verification of identity documents, faces and supporting materials; financial transfer requires validation."
+    },
+    "D45": {
+      "contribution": "Shows that targeted optimization can produce high-quality forgeries that evade authenticity detectors.",
+      "limitations": "Success depends on access permissions and the specific detector; it cannot be directly reported as a financial attack-success rate.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMotivates adaptive-attack testing for financial detectors and cautions against approval based only on offline AUC; this is a transfer interpretation."
+    },
+    "G01": {
+      "contribution": "Demonstrates real-time facial-expression reenactment using ordinary RGB video.",
+      "limitations": "A generation study; it does not demonstrate compromise of financial verification.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nIllustrates why motion challenges need evaluation against generated responses; this is a financial-security interpretation."
+    },
+    "G02": {
+      "contribution": "Supports face swapping and driving without identity-specific training.",
+      "limitations": "Generation-quality experiments are not end-to-end financial attack-success measurements.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nInforms an attacker-capability model when only limited target material is available; financial applicability is an interpretation."
+    },
+    "G03": {
+      "contribution": "Uses one trained model for multi-identity face swapping while preserving target attributes.",
+      "limitations": "The study does not evaluate the security of banking SDKs.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nProvides technical context for holding out previously unseen face-swap generators in evaluation; financial transfer requires validation."
+    },
+    "G04": {
+      "contribution": "Improves image-synthesis quality, including full-face generation, and reduces generation artifacts.",
+      "limitations": "A general generation method rather than an identity-verification attack study.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nInforms discussion of synthetic identity portraits and generator-dependent artifacts; this is a financial-security interpretation."
+    },
+    "G05": {
+      "contribution": "Reduces the computational cost of high-quality conditional synthesis through latent-space modeling.",
+      "limitations": "General image generation, not a dedicated face-fraud detection or financial-attack study.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nIllustrates why evidence learned from GANs needs testing under transfer to diffusion generators."
+    },
+    "G06": {
+      "contribution": "Generates pose and expression coefficients from audio and renders talking-face video.",
+      "limitations": "Synchronization and quality metrics do not establish bypass of audiovisual verification.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nMotivates testing audiovisual consistency against new talking-face generators in financial video verification."
+    },
+    "G07": {
+      "contribution": "Formulates face swapping as completion conditioned on identity and structure.",
+      "limitations": "A diffusion-based swapping study; it does not directly measure attack success against financial systems.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nProvides a basis for generator-holdout tests spanning GAN and diffusion families; financial applicability requires validation."
+    },
+    "G08": {
+      "contribution": "Reduces confusion between identity codes and attributes such as hairstyle.",
+      "limitations": "Improved preservation of generated identity does not establish effective financial fraud.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nInforms analysis of adversary capabilities against identity-consistency detection; this is a financial-security interpretation."
+    },
+    "P01": {
+      "contribution": "Establishes the Replay-Attack benchmark and evaluates texture descriptors for attack detection.",
+      "limitations": "Texture statistics may change with displays, materials and acquisition conditions.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P02": {
+      "contribution": "Detects attacks through image-distortion features and introduces the mobile MSU-MFSD benchmark.",
+      "limitations": "Image-quality distortions can be confused with bona fide faces captured by low-end devices.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nThe introduction explicitly mentions mobile payment. The method may inform quality-cue analysis for low-cost payment terminals, but no actual payment experiments are reported."
+    },
+    "P03": {
+      "contribution": "Incorporates chrominance into texture modeling, demonstrating the limitations of grayscale cues.",
+      "limitations": "Biases associated with illumination, skin tone and color-processing pipelines require separate evaluation.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P04": {
+      "contribution": "Provides mobile PAD protocols that vary environment, device and attack medium.",
+      "limitations": "The benchmark mainly covers print and replay attacks; it does not represent injection or synthetic-media fraud.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P05": {
+      "contribution": "Moves beyond binary classification to depth and physiological supervision and releases the SiW dataset.",
+      "limitations": "Pseudo-depth is not measured physical depth, and replayed videos can preserve pulse cues.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P06": {
+      "contribution": "Explicitly estimates spoofing noise, relating detection outputs to attack media.",
+      "limitations": "Experiments cover print and replay; effectiveness against complex masks cannot be directly extrapolated.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P07": {
+      "contribution": "Introduces multi-source domain generalization to PAD to reduce database bias.",
+      "limitations": "Domain-invariant representations may still drift on previously unseen devices and media.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nThe introduction explicitly mentions ATMs. The study informs generalization across banking terminals, while its experiments use public PAD datasets."
+    },
+    "P08": {
+      "contribution": "Extends zero-shot PAD to 13 attack types and introduces SiW-M.",
+      "limitations": "Unknown attacks still need some proximity to learned attack clusters; the evaluation does not cover every future medium.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P09": {
+      "contribution": "Demonstrates the contribution of data collection and synthesis to spatiotemporal detection models.",
+      "limitations": "Borders and reflections can become shortcuts, motivating stress tests with background information removed.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P10": {
+      "contribution": "Combines intensity and local-gradient information to extract fine-grained attack evidence from a single frame.",
+      "limitations": "Gradient cues effective for print and replay may not transfer to high-fidelity masks or injection.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P11": {
+      "contribution": "Aggregates bona fide faces while preserving differences between attack domains, avoiding forced alignment of all spoof classes.",
+      "limitations": "The assumed homogeneity of bona fide samples needs testing for low-quality inputs, older users and unusual environments.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P12": {
+      "contribution": "Relates PAD to material differences between skin and attack instruments.",
+      "limitations": "Material camouflage and imaging shifts may weaken learned material representations.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nThe introduction explicitly mentions payment. Material analysis may inform face-payment defenses, but no experiments at the financial-workflow level are reported."
+    },
+    "P13": {
+      "contribution": "Separates identity content from liveness information to reduce identity interference.",
+      "limitations": "Disentanglement depends on training constraints and does not guarantee complete semantic separation.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P14": {
+      "contribution": "Uses multiscale spoof traces to reconstruct bona fide faces and synthesize new attack samples.",
+      "limitations": "Spoof traces lack ground truth; clear visualizations do not establish reliable causal explanations.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P15": {
+      "contribution": "Introduces WMCA and demonstrates complementary multichannel evidence against high-quality mask attacks.",
+      "limitations": "Additional sensors impose cost, calibration and missing-modality constraints.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P16": {
+      "contribution": "Provides more than 620,000 images with multiple annotation types, supporting attribute and bias analysis.",
+      "limitations": "Image scale does not establish coverage of actual financial-fraud events or client-side attack paths.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P17": {
+      "contribution": "Jointly searches spatial and temporal architectures and introduces the CASIA-SURF 3DMask evaluation.",
+      "limitations": "Search cost and data distributions limit direct transfer to new terminals.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P18": {
+      "contribution": "Adjusts learning contributions using modality-specific confidence to mitigate overfitting to additional channels.",
+      "limitations": "The method requires RGBD inputs; confidence reliability and modality failures require further evaluation.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P19": {
+      "contribution": "Provides explicit ethnicity labels for joint evaluation of fairness and cross-attack generalization.",
+      "limitations": "Coarse ethnicity categories do not cover age, gender or intersectional biases.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P20": {
+      "contribution": "Uses a fixed liveness encoder to stabilize disentanglement and recognize unknown attacks.",
+      "limitations": "The supplementary material identifies cross-domain differences in bona fide features as a limitation of disentanglement.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P21": {
+      "contribution": "Distinguishes liveness-related from irrelevant styles and provides a large-scale evaluation.",
+      "limitations": "Style synthesis does not guarantee coverage of complex acquisition transformations on actual terminals.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nThe introduction explicitly mentions electronic payment. The study may inform device-related domain shifts in payment verification, but no financial-workflow experiments are reported."
+    },
+    "P22": {
+      "contribution": "Learns local capture features and explores adaptation using a small number of bona fide reference samples.",
+      "limitations": "Device-category information may become a shortcut, and low-quality devices can cause false rejection.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P23": {
+      "contribution": "Customizes a fixed backbone using a few labeled target bona fide and spoof examples; the feature-wise transforms are removed at inference.",
+      "limitations": "Target labels and examples are available. This is few-shot transfer, not target-free domain generalization.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P24": {
+      "contribution": "Refines style robustness to individual samples rather than relying on coarse domain labels.",
+      "limitations": "Instance whitening alone cannot guarantee robustness to unseen operational conditions.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P25": {
+      "contribution": "Preserves domain separability while aligning bona fide-to-spoof variation directions, revisiting domain-invariance assumptions.",
+      "limitations": "Cross-domain trajectory consistency needs stress testing on extreme media and demographic groups.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P26": {
+      "contribution": "Learns generalizable facial representations from unlabeled faces; downstream evaluation uses labeled finetuning or nearest-neighbor reference information.",
+      "limitations": "Unsupervised refers to representation pretraining, not every downstream decision stage. Label and reference permissions must be disclosed separately.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P27": {
+      "contribution": "Introduces language-semantic guidance to improve cross-domain transfer with limited data.",
+      "limitations": "Prompts, pretraining sources and semantic biases affect deployment reliability.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P28": {
+      "contribution": "Addresses new-domain generalization and catastrophic forgetting without replaying historical data.",
+      "limitations": "Prototypes may still leak information; long-term updates and attack contamination require testing.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nThe approach may inform continual bank-model updates under privacy restrictions. The paper discusses unavailable historical data but does not conduct banking experiments."
+    },
+    "P29": {
+      "contribution": "Selects regularization parameters using optimization signals and evaluates generalization on FAS.",
+      "limitations": "A general domain-generalization strategy does not directly address sensor attacks or compromised verification paths.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P31": {
+      "contribution": "Projects the current test sample into source spaces without updating parameters at test time.",
+      "limitations": "Absence of parameter updates does not remove distributional assumptions; projections of adversarial samples require examination.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P32": {
+      "contribution": "Preserves hierarchical relationships between domains and attacks to improve alignment and decision robustness.",
+      "limitations": "Prototype hierarchies need an explicit mapping before they can represent business-risk levels.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P33": {
+      "contribution": "Trains only on bona fide data and simulates unknown attacks through latent spoof features.",
+      "limitations": "Coverage of synthesized latent features is uncertain, and rare bona fide samples may be falsely rejected.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P34": {
+      "contribution": "Addresses unreliable sensor regions and modality dominance and introduces a multimodal domain-generalization benchmark.",
+      "limitations": "Sensor failures and degradation to RGB-only inputs require additional evaluation.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P35": {
+      "contribution": "Dynamically conditions the classifier on sample-specific prompts to preserve semantics and reduce domain interference.",
+      "limitations": "Confidence calibration and explanation faithfulness require evaluation in actual verification workflows.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P36": {
+      "contribution": "Uses a few labeled target examples without source raw data. Alternatives include a training-free transport mapping and lightweight classifier training on fixed features.",
+      "limitations": "Source-free is not target-free or uniformly training-free. Labeled target calibration and prototype/model access remain substantive permissions.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nThe approach may inform deployments in which customer-side and bank-side data cannot be shared. The paper directly discusses privacy constraints but reports no financial-event experiments."
+    },
+    "P37": {
+      "contribution": "Transfers a unified representation across cross-domain PAD, deepfake and diffusion-generated face-forgery tasks.",
+      "limitations": "A unified representation does not establish coverage of injection paths or identity-authorization risks.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P38": {
+      "contribution": "Addresses both within-domain modality-quality differences and cross-domain modality misalignment.",
+      "limitations": "Additional modalities can introduce cost and domain shifts; evaluation on actual terminals is needed.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P39": {
+      "contribution": "Aligns paraphrased text descriptions with local visual cues to improve semantic robustness.",
+      "limitations": "Manually paraphrased descriptions have limited coverage of rare attacks.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P40": {
+      "contribution": "Produces decisions and natural-language explanations and introduces a one-to-eleven cross-domain evaluation.",
+      "limitations": "Explanations may be unfaithful; inference latency and performance at low attack-acceptance rates require testing.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P41": {
+      "contribution": "Compares the cross-domain generalization and resource efficiency of visual foundation models.",
+      "limitations": "This is a workshop study, distinct from main-conference proceedings; efficiency still requires on-device measurements.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P42": {
+      "contribution": "Uses visual tools to investigate fine-grained cues and constructs the ToolFAS-16K reasoning dataset.",
+      "limitations": "Tool outputs and language explanations require evaluation of faithfulness, latency and attacker manipulation.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nPotentially contributes a presentation attack detection layer to remote financial identity verification; no experiments in actual financial workflows are reported."
+    },
+    "P43": {
+      "contribution": "Introduces an RGB, depth and infrared dataset of 1,000 subjects with standardized protocols.",
+      "limitations": "Attacks mainly involve printed and cut-out artifacts; multimodal scale does not establish coverage of injection or high-fidelity masks.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nThe introduction explicitly mentions face payment, and the authors include JD Finance. The dataset may inform multimodal payment-terminal detection, but no actual payment-event experiments are reported."
+    },
+    "P44": {
+      "contribution": "Introduces high-fidelity mask data and learns detection from identity, material and illumination context.",
+      "limitations": "The masks sample a limited range of materials and devices; future materials and demographic biases require testing.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nThe dataset may support mask-attack stress tests for high-value transactions and branch terminals; no financial-workflow experiments are reported."
+    },
+    "R01": {
+      "contribution": "Surveys photograph, screen and mask attacks, detection methods, datasets and standards.",
+      "limitations": "Predates recent deep generation and cross-domain learning and needs complementary newer evidence.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nHelps define the boundary of presentation attacks in financial identity verification; this is a conceptual application."
+    },
+    "R02": {
+      "contribution": "Connects auxiliary supervision, multimodal sensing, cross-domain learning and open-set PAD research.",
+      "limitations": "Coverage needs complementing with 2024-2026 methods and system defenses against digital injection.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nProvides a principal taxonomy for the PAD methods discussion; its financial application is interpretive."
+    },
+    "R03": {
+      "contribution": "Distinguishes full-face synthesis, identity replacement, attribute modification and expression replacement.",
+      "limitations": "Mainly covers earlier generators and datasets and does not represent newer diffusion forgeries.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nSupports organizing manipulation types by identity-fraud objectives; this is a financial-security interpretation."
+    },
+    "R04": {
+      "contribution": "Situates deepfake detection within broader media forensics and integrity verification.",
+      "limitations": "Does not evaluate complete financial workflows; end-to-end threat models are needed.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nClarifies the different evidential requirements for content authenticity and identity authorization."
+    },
+    "R05": {
+      "contribution": "Explains deepfake-generation architectures, detector weaknesses and the evolution of attacks and defenses.",
+      "limitations": "Predates contemporary diffusion and real-time digital humans and requires newer complementary literature.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nProvides conceptual context for threat evolution and defense boundaries in financial verification."
+    },
+    "R06": {
+      "contribution": "Includes detector evasion and the co-evolution of generation and detection.",
+      "limitations": "Financial capture paths and economic costs are not its principal evaluation targets.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nInforms adaptive-attack and security-evaluation design for financial verification; this is conceptual transfer."
+    },
+    "R07": {
+      "contribution": "Organizes central deepfake-detection questions around reliability.",
+      "limitations": "Reliability findings still need translation into financial operating thresholds, costs and workflow outcomes.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nProvides a comparison framework for moving from offline accuracy toward deployability in financial settings."
+    },
+    "R08": {
+      "contribution": "Surveys swapping, reenactment, talking faces and attribute editing and discusses diffusion methods.",
+      "limitations": "A broad generation taxonomy cannot directly replace classification by financial attacker entry points.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nProvides context for positioning a finance-oriented synthesis against surveys available in 2026."
+    },
+    "R09": {
+      "contribution": "Surveys speech-deepfake detection models, generalization and evaluation.",
+      "limitations": "Speech is outside the central face-detection problem and serves as complementary context for audiovisual verification.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nProvides adjacent background for audiovisual consistency in remote video identity verification."
+    },
+    "R10": {
+      "contribution": "Summarizes approximately a decade of anti-spoofing research and methodological change.",
+      "limitations": "A complementary survey does not establish system trust boundaries or financial effectiveness.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nProvides a comparative account of PAD's evolution and its coverage in existing surveys."
+    },
+    "R11": {
+      "contribution": "Focuses on deep PAD with RGB cameras, including unknown domains and attacks.",
+      "limitations": "An RGB scope does not cover all sensors or processing-path controls relevant to finance.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nInforms comparison with deployability requirements on ordinary mobile devices; this is financial transfer."
+    },
+    "R12": {
+      "contribution": "Provides methodological guidance for selecting and organizing literature by technical category.",
+      "limitations": "Its retrieval period is earlier; detection findings cannot directly represent present deployment.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nInforms retrieval and screening methodology rather than evidence of financial effectiveness."
+    },
+    "R13": {
+      "contribution": "Uses document and selfie acquisition to explain attack positions for different face manipulations.",
+      "limitations": "A survey chapter rather than a large-scale controlled experiment on production banking systems.",
+      "evidence_note": "Studies identity/document verification, operational verification, or simulated detector–recognizer composition. It does not establish deployed banking loss reduction.\nDirectly discusses remote verification and document enrollment; transfer to particular banking workflows still requires validation."
+    },
+    "S01": {
+      "contribution": "Provides a technical overview of morphing attacks and defenses.",
+      "limitations": "Published in 2021, before subsequent diffusion methods; much evidence concerns identity documents and border control.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nFinancial document enrollment may face fused-identity contamination; this interpretation is not supported by banking experiments in the paper."
+    },
+    "S02": {
+      "contribution": "Provides an entry point to developments in morph generation and detection through 2026.",
+      "limitations": "The survey itself is not an effectiveness experiment in financial settings.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nInforms planning of financial defenses against generated identity morphs; no financial experiments are reported."
+    },
+    "S03": {
+      "contribution": "Shows how different generators, private data and protocols distort direct cross-study comparisons.",
+      "limitations": "An earlier survey that does not represent modern diffusion-morph capabilities.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nFinancial evaluation should separate generator and protocol differences; no banking experiments are reported."
+    },
+    "S04": {
+      "contribution": "Demonstrates early that a dual-identity portrait can enter a valid identity document through enrollment.",
+      "limitations": "The setting is mainly passports and border control, with limited scale and substantial differences from modern models.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nIf eKYC trusts a contaminated document portrait, a genuine live probe may still match an impersonated identity; this is an interpretation, without banking experiments."
+    },
+    "S05": {
+      "contribution": "Connects live capture with document information and proposes demorphing as a defense.",
+      "limitations": "Requires reliable live samples and morphing assumptions; online publication was in 2017 and the formal issue appeared in 2018.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay inform document-to-selfie verification in finance; the paper's setting is border control rather than banking."
+    },
+    "S06": {
+      "contribution": "Evaluates multiple generation tools and the effects of print-scan and compression.",
+      "limitations": "Requires a trusted comparison sample; datasets and generation tools remain limited.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay inform document-selfie relationships in eKYC, but no banking-workflow experiments are reported."
+    },
+    "S07": {
+      "contribution": "Advances independent evaluation using unseen test data, refined morph generation and print-scan conditions.",
+      "limitations": "Approximately 150 subjects provide limited demographic and operational coverage; online publication was in 2020 and the formal issue appeared in 2021.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMotivates isolated test sets and independent evaluation for financial deployment; the paper reports no banking experiments."
+    },
+    "S08": {
+      "contribution": "Shows that high-quality morphs can increase attacks that match multiple identities.",
+      "limitations": "Attack effectiveness depends on the recognizer, loss and data; image quality alone does not measure security risk.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nProvides candidate red-team material for financial reference-identity contamination; no financial-loss measurements are reported."
+    },
+    "S09": {
+      "contribution": "Evaluates attack strength, image quality and responses of different detectors.",
+      "limitations": "Generalization to unseen generator families requires testing; no production identity-system experiments are reported.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMotivates treating diffusion morphs as a distinct held-out attack family in financial evaluation."
+    },
+    "S10": {
+      "contribution": "Evaluates cross-domain detection across four data categories and seven generators.",
+      "limitations": "Single-image detection does not verify the identity authenticity of enrolled references or establish session provenance or business authorization.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay inform single-image enrollment screening and lightweight adaptation; it does not establish effectiveness in financial verification."
+    },
+    "S11": {
+      "contribution": "Brings demographic-group differences into morphing attack detection evaluation.",
+      "limitations": "A workshop paper with limited group definitions and data; the population does not represent all financial customers.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMotivates group-specific audits of morph-detection false rejection and missed attacks; no financial-workflow experiments are reported."
+    },
+    "S12": {
+      "contribution": "Moves from individual-detector performance to effects on the overall recognition workflow.",
+      "limitations": "A simulation-based workshop study without validation on production banking systems.",
+      "evidence_note": "Studies identity/document verification, operational verification, or simulated detector–recognizer composition. It does not establish deployed banking loss reduction.\nFinancial systems should measure composed outcomes, false rejection and review burden, rather than compare only MAD EER; this is a transfer interpretation."
+    },
+    "S13": {
+      "contribution": "Demonstrates that wearable objects can manipulate recognizers in the physical world.",
+      "limitations": "Volunteers, environments and models are limited; physical success is not equivalent to success through a business workflow.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMotivates physical adversarial testing of recognition at financial premises; no banking experiments are reported."
+    },
+    "S14": {
+      "contribution": "Shows that pixel-norm threat bounds can miss semantic perturbations.",
+      "limitations": "White-box, black-box and attribute-editing assumptions are limited; natural appearance does not establish feasibility in financial settings.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMotivates semantic and digital-injection threat tests for financial recognizers; no banking experiments are reported."
+    },
+    "S15": {
+      "contribution": "Compares multidimensional security differences between open-set and closed-set recognition systems.",
+      "limitations": "Only selected models and datasets are covered; actual financial-device chains remain untested.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMay inform face-related financial threat modeling and red-team evaluation; this is a transfer interpretation."
+    },
+    "S16": {
+      "contribution": "Evaluates white-box, black-box, commercial-interface and physical attacks.",
+      "limitations": "Participants and services are limited; changed conditions and business-level success require independent evaluation.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nThe paper tests commercial recognition services, without banking experiments; financial relevance concerns potential transfer of wearable attacks."
+    },
+    "S17": {
+      "contribution": "Tests recognition APIs, anti-spoofing APIs, phones and access-control devices to advance physical evaluation.",
+      "limitations": "Devices and configurations are limited; API results do not establish banking losses.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nExperiments concern actual commercial security services and devices rather than banks. Joint PAD and matching tests in finance are a transfer interpretation."
+    },
+    "S18": {
+      "contribution": "Uses volunteer experiments to expose differences between digital backdoor defenses and physical-condition assumptions.",
+      "limitations": "Requires attacker control over training-data contamination; triggers and settings are limited.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nMotivates attention to data supply chains in financial face-model procurement and training; no banking experiments are reported."
+    },
+    "S19": {
+      "contribution": "Shows that recognition-model outputs can expose visual identity information.",
+      "limitations": "This does not imply exact recovery of training photographs; earlier classifiers do not represent every modern embedding model.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nFinancial biometric API outputs may create privacy and reusable-attack-material risks; this interpretation is not backed by financial experiments in the paper."
+    },
+    "S20": {
+      "contribution": "Demonstrates that deep face templates are not inherently irreversible or anonymous.",
+      "limitations": "Requires access to templates and appropriate training conditions; equal recoverability is not established for all newer templates.",
+      "evidence_note": "Component, benchmark or general biometric evidence. Financial use is a transfer argument requiring validation of the actual workflow.\nFinancial feature-database breaches should be evaluated for reusable identity material, rather than protecting only original photographs; this is a transfer interpretation."
+    },
+    "S21": {
+      "contribution": "Proposes protecting facial privacy through training-data poisoning.",
+      "limitations": "Subsequent ICLR 2022 research shows that new models and robust training can defeat the protection; it is not permanent.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nA privacy-protection study rather than financial fraud detection, relevant to customer-image exposure and the limits of such defenses."
+    },
+    "S22": {
+      "contribution": "Evaluates privacy protection for publicly available faces against commercial recognition APIs.",
+      "limitations": "Depends on image processing and recognizer conditions; later work exposes limited long-term stability.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nProvides context for financial-user privacy and publicly exposed identity material; no financial-workflow experiments are reported."
+    },
+    "S23": {
+      "contribution": "Shows the difficulty of defending against continually updated recognizers using one-time image perturbations.",
+      "limitations": "Findings concern the studied threat models and methods, not all cryptographic privacy mechanisms.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nFinancial privacy controls should not rely on perturbation as the sole long-term barrier; no banking experiments are reported."
+    },
+    "S24": {
+      "contribution": "Analyzes template and intermediate-feature leakage and reconstruction, including an actual university application.",
+      "limitations": "Feature obfuscation is not formal encryption; adaptive attacks and accuracy tradeoffs require evaluation.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nThe paper evaluates a university application, without banking deployment. Implications for financial template storage are a transfer interpretation."
+    },
+    "S25": {
+      "contribution": "Balances natural appearance with privacy against black-box recognition.",
+      "limitations": "Transfer depends on the model; defensive privacy research should not be classified as demonstrated financial fraud.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nProvides context for the dual use of generative face techniques and privacy protection; no financial experiments are reported."
+    },
+    "S26": {
+      "contribution": "Explores reducing recognition exposure during customized portrait generation.",
+      "limitations": "The study protects privacy; its ID encryptor is not established cryptographic encryption, and no financial-attack experiments are reported.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nThe presence of attacks in the title does not make the paper a financial-fraud detection study; its relevance concerns method boundaries and privacy."
+    },
+    "S27": {
+      "contribution": "Evaluates demographic-group differences in commercial and research recognition models.",
+      "limitations": "Studies identity matching rather than PAD or MAD; dataset populations do not represent all financial customers.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nFinancial false rejection and false matching require separate fairness evaluation; average accuracy cannot substitute for those audits."
+    },
+    "S28": {
+      "contribution": "Explores reducing gender- and skin-tone-related bias while preserving identity discrimination.",
+      "limitations": "Depends on labels, groups and data; attribute suppression is neither formal privacy nor fairness across every error type.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nInforms representation and matching-fairness design for financial customer groups; no financial experiments are reported."
+    },
+    "S29": {
+      "contribution": "Connects fairness with operational recognition thresholds and group-specific error rates.",
+      "limitations": "Focuses on gender and selected data; extension to age, devices and intersectional groups is needed.",
+      "evidence_note": "Background capabilities, conceptual synthesis, governance, fairness or privacy context, rather than direct financial detector deployment evidence.\nMay inform fixed-threshold audits and false-rejection costs in financial workflows; no financial experiments are reported."
+    },
+    "S30": {
+      "contribution": "Provides a strong baseline for the core matching task in remote identity verification.",
+      "limitations": "Identity matching is distinct from fraud detection; private document-selfie data limit reproduction, and matching cannot replace PAD.",
+      "evidence_note": "Studies identity/document verification, operational verification, or simulated detector–recognizer composition. It does not establish deployed banking loss reduction.\nDirectly studies document-selfie verification and relates to eKYC matching, but does not establish banking anti-fraud effectiveness."
+    },
+    "S31": {
+      "contribution": "Experiments on payment and insurance apps expose liveness bypass, AB substitution, camera hijacking and downgrade attacks. AB substitution separates the person checked for liveness from the identity-matching material.",
+      "limitations": "The study samples specific versions in 2021, not current app vulnerabilities; the paper states that the disclosed vulnerabilities were fixed by publication.",
+      "evidence_note": "Application/system experiments include financial identity or payment-related workflows. Findings concern tested versions, privileges and outcomes, not current vulnerabilities or measured financial loss.\nDirectly evaluates payment-password modification, insurance and loan identity workflows. This is financial-system evidence, without quantified actual monetary-loss measurements."
+    },
+    "S32": {
+      "contribution": "Exposes deepfake defenses' gaps in tested liveness services and propagation to downstream applications; analyzes demographic bias, generation-training choices and input quality.",
+      "limitations": "Primarily assumes one target image and uses the platform, API and app versions available at the time; it neither proves current vulnerabilities nor measures financial losses or covers all generators.",
+      "evidence_note": "Application/system experiments include financial identity or payment-related workflows. Findings concern tested versions, privileges and outcomes, not current vulnerabilities or measured financial loss.\nDirectly concerns online payment and banking authentication, with authorized proofs of concept on fintech and insurance clients. Findings do not generalize to every financial system or establish actual losses."
+    }
+  }
+}

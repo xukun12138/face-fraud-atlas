@@ -3,6 +3,10 @@
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 const VIEWS = ["overview", "library", "benchmarks", "tools", "figures", "resources"];
+const PREFERENCE_KEYS = {
+  theme: "face-fraud-atlas.preferences.v2.theme",
+  language: "face-fraud-atlas.preferences.v2.language",
+};
 const ROLE_NAMES = {
   PAD: "呈现攻击检测", digital: "数字篡改检测", generation: "生成机制",
   morph: "人脸融合检测", adversarial: "对抗识别攻击", "systems/privacy": "系统与隐私",
@@ -18,7 +22,7 @@ const UNIT_NAMES = {
 };
 const state = {
   papers: [], benchmarks: [], taxonomy: { claims: [], scenarios: [] }, figures: [],
-  allowedIds: [], language: "zh", loaded: false, lastFocus: null,
+  readingNotes: {}, allowedIds: [], language: "en", loaded: false, lastFocus: null,
 };
 const locale = () => state.language === "en" ? "en-US" : "zh-CN";
 const number = value => {
@@ -86,6 +90,15 @@ function evidenceName(paper) {
     "component-transfer": "组件迁移", context: "背景与综述", official: "规范与指导背景",
   };
   return text(`ui.evidence.${kind}`, names[kind] || kind || literal("未报告"));
+}
+function evidenceDescription(paper) {
+  const kind = !isResearch(paper) ? "official" : paper.evidence_level;
+  return text(`ui.evidenceDescription.${kind}`, "");
+}
+function readingField(paper, field) {
+  if (state.language !== "en") return paper[field] || "";
+  return paper[`${field}_en`] || state.readingNotes[paper.id]?.[field]
+    || paper.translations?.en?.[field] || paper[field] || "";
 }
 function authorsOf(paper) {
   return Array.isArray(paper.authors) ? paper.authors.filter(Boolean) :
@@ -219,8 +232,11 @@ function filteredPapers() {
     if (year && String(paper.year) !== year) return false;
     if (form && paper.publication_form !== form) return false;
     const haystack = [paper.id, paper.title, ...authorsOf(paper), paper.venue, paper.year,
-      paper.primary_role, roleName(paper.primary_role), paper.section, paper.method,
-      paper.contribution, paper.limitations, paper.evidence_note].join(" ").toLocaleLowerCase();
+      paper.primary_role, ROLE_NAMES[paper.primary_role],
+      globalThis.ATLAS_I18N?.en?.[`role.${paper.primary_role}`], paper.section, paper.method,
+      paper.contribution, paper.limitations, paper.evidence_note,
+      ...["contribution", "limitations", "evidence_note"].map(field => state.readingNotes[paper.id]?.[field] || paper[`${field}_en`])]
+      .join(" ").toLocaleLowerCase();
     return query.every(token => haystack.includes(token));
   });
 }
@@ -259,8 +275,16 @@ function renderPapers() {
     if (authors.length) card.append(el("p", "paper-authors", authors.slice(0, 3).join(" · ") + (authors.length > 3 ? ` · ${text("ui.etAl", "等")}` : "")));
     card.append(el("p", "card-meta", [paper.venue, paper.year, formName(paper.publication_form)].filter(Boolean).join(" · ")));
     const badges = el("div", "badges");
-    if (paper.core_venue) badges.append(el("span", "badge core", "纳入核心来源"));
-    if (paper.evidence_level) badges.append(el("span", "badge", format("ui.financialEvidence", "金融相关证据：{kind}", { kind: evidenceName(paper) })));
+    if (paper.core_venue) {
+      const core = el("span", "badge core", text("ui.coreVenue", "本选集的核心发表来源"));
+      core.title = text("ui.coreVenueNote", "这是本综述的来源选择类别，不是单篇论文质量排名。");
+      badges.append(core);
+    }
+    if (paper.evidence_level) {
+      const evidence = el("span", "badge", format("ui.financialEvidence", "研究关联：{kind}", { kind: evidenceName(paper) }));
+      evidence.title = evidenceDescription(paper);
+      badges.append(evidence);
+    }
     if (!isResearch(paper)) badges.append(el("span", "badge official", "官方资料"));
     if (badges.childElementCount) card.append(badges);
     const actions = el("div", "paper-actions");
@@ -301,12 +325,18 @@ function openPaper(id, trigger) {
   appendFact(facts, "综述位置", paper.section);
   appendFact(facts, "金融相关证据", evidenceName(paper));
   body.append(facts);
+  if (paper.core_venue) body.append(el("p", "scope-note", text("ui.coreVenueNote", "这是本综述的来源选择类别，不是单篇论文质量排名。")));
   body.append(el("p", "scope-note", "类别表示与金融验证的关联方式，不是研究质量或证据强弱排序。"));
-  if (state.language === "en" && [paper.contribution, paper.limitations, paper.evidence_note].some(value => /[\u3400-\u9fff]/.test(value || ""))) {
-    body.append(el("p", "scope-note", text("ui.originalNotes", "Research notes retain the reviewed catalog's original language.")));
+  const fields = [["contribution", "研究贡献"], ["limitations", "研究限制"], ["evidence_note", "证据边界"]];
+  if (state.language === "en" && fields.some(([field]) => /[\u3400-\u9fff]/.test(readingField(paper, field)))) {
+    body.append(el("p", "scope-note", text("ui.originalNotes", "Some reading notes are available only in the original Chinese; an English translation is not yet available.")));
   }
-  for (const [field, label] of [["contribution", "研究贡献"], ["limitations", "研究限制"], ["evidence_note", "证据边界"]]) {
-    if (paper[field]) body.append(el("h3", "", label), el("p", "detail-paragraph", paper[field]));
+  for (const [field, label] of fields) {
+    const value = readingField(paper, field);
+    if (!value) continue;
+    const paragraph = el("p", "detail-paragraph", value);
+    paragraph.lang = /[\u3400-\u9fff]/.test(value) ? "zh-CN" : "en";
+    body.append(el("h3", "", label), paragraph);
   }
   body.append(link("打开已核验来源 ↗", paper.source_url, "button secondary"));
   if (paper.bibtex) {
@@ -402,6 +432,18 @@ function makeTable(headers, rows, className = "data-table") {
 
 function datasetName(row) { return row.name || row.dataset || row.id; }
 function countText(value) { return value === null || value === undefined || value === "" ? literal("未报告") : number(value); }
+function additionalCounts(row) {
+  const entries = Object.entries(row.additional_counts || {});
+  if (!entries.length) return literal("未报告");
+  const list = el("dl", "benchmark-extra-counts");
+  for (const [key, value] of entries) {
+    const fallback = key.replaceAll("_", " ").replace(/^./, letter => letter.toUpperCase());
+    const label = text(`ui.benchmarkCount.${key}`, fallback);
+    const display = /(?:^|_)year$/.test(key) && value !== null ? String(value) : countText(value);
+    list.append(el("dt", "", label), el("dd", "", display));
+  }
+  return list;
+}
 function setupBenchmarks() {
   renderBenchmarkTable();
   for (const selector of ["#benchmark-a", "#benchmark-b"]) {
@@ -441,15 +483,15 @@ function renderBenchmarkComparison() {
     ["版本范围", row => row.version || "原论文版本"],
     ["报告总量", row => countText(row.total_count)],
     ["计数单位", row => unitName(row.unit)],
-    ["原数据集两类：真实/真人；呈现攻击/操纵", row => `${countText(row.real_count)} / ${countText(row.attack_count)}`],
+    ["真实 / 真人类数量", row => countText(row.real_count)],
+    ["呈现攻击 / 操纵类数量", row => countText(row.attack_count)],
     ["身份数", row => countText(row.identity_count)],
     ["身份统计范围", row => row.identity_scope || "未报告"],
     ["模态", row => (row.modalities || []).join(" / ") || "未报告"],
     ["协议范围", row => row.protocol || "未报告"],
     ["计数依据", row => row.count_basis || "未报告"],
     ["推导说明", row => row.derivation || "未报告"],
-    ["附加计数（原始字段）", row => Object.entries(row.additional_counts || {})
-      .map(([key, value]) => `${key}: ${countText(value)}`).join("；") || "未报告"],
+    ["附加计数（原始字段）", additionalCounts],
     ["限制 / 原文差异", row => (row.notes || []).join("；") || "未报告"],
     ["来源定位", row => row.source_location || "未报告"],
     ["原论文", row => link("核验来源 ↗", row.source_url)],
@@ -513,7 +555,8 @@ function renderRisk() {
     metric.append(el("span", "metric-label", label), el("strong", "metric-value", value));
     metrics.append(metric);
   }
-  container.replaceChildren(metrics, el("p", "scope-note", "假设场景：输入的攻击发生率、召回率与误告警率均为模型条件，结果是预期量，允许非整数；不是银行实测或算法成绩。"));
+  container.replaceChildren(metrics, el("p", "scope-note", text("ui.riskMetricExplanation", "告警精确率（PPV）是预期攻击告警数除以预期总告警数；所有计数单位均为会话。")),
+    el("p", "scope-note", "假设场景：输入的攻击发生率、召回率与误告警率均为模型条件，结果是预期量，允许非整数；不是银行实测或算法成绩。"));
   renderRiskChart(tp, fp, alerts);
 }
 
@@ -527,27 +570,34 @@ function svgEl(tag, attributes, content) {
 function renderRiskChart(tp, fp, alerts) {
   const container = $("#risk-chart");
   if (!container) return;
-  const isSVG = container.namespaceURI === "http://www.w3.org/2000/svg";
-  const svg = isSVG ? container : svgEl("svg");
-  svg.replaceChildren();
-  svg.setAttribute("viewBox", "0 0 720 165");
+  const svg = svgEl("svg");
+  svg.setAttribute("viewBox", "0 0 720 85");
   svg.setAttribute("role", "img");
   svg.setAttribute("aria-labelledby", "risk-chart-title risk-chart-description");
   svg.append(svgEl("title", { id: "risk-chart-title" }, "假设场景的预期告警组成"),
     svgEl("desc", { id: "risk-chart-description" }, format("ui.riskChartDescription", "攻击告警 {tp}，正常会话误告警 {fp}。仅按告警数缩放。", { tp: number(tp), fp: number(fp) })));
-  svg.append(svgEl("rect", { x: 20, y: 26, width: 680, height: 45, rx: 8, fill: "#27384b" }));
+  svg.append(svgEl("rect", { x: 20, y: 20, width: 680, height: 45, rx: 8, fill: "#e7edf3" }));
   if (alerts > 0) {
     const width = 680 * tp / alerts;
-    if (width > 0) svg.append(svgEl("rect", { x: 20, y: 26, width, height: 45, fill: "#36b6a4" }));
-    if (width < 680) svg.append(svgEl("rect", { x: 20 + width, y: 26, width: 680 - width, height: 45, fill: "#e2aa59" }));
-  } else svg.append(svgEl("text", { x: 360, y: 55, "text-anchor": "middle", fill: "currentColor", "font-size": 14 }, "当前假设下无告警"));
-  for (const [x, color, label] of [[20, "#36b6a4", format("ui.attackAlertCount", "攻击告警 {count}", { count: number(tp) })],
-    [350, "#e2aa59", format("ui.legitimateAlertCount", "正常会话误告警 {count}", { count: number(fp) })]]) {
-    svg.append(svgEl("rect", { x, y: 91, width: 14, height: 14, rx: 3, fill: color }),
-      svgEl("text", { x: x + 24, y: 104, fill: "currentColor", "font-size": 15 }, label));
+    if (width > 0) svg.append(svgEl("rect", { x: 20, y: 20, width, height: 45, fill: "#36b6a4" }));
+    if (width < 680) svg.append(svgEl("rect", { x: 20 + width, y: 20, width: 680 - width, height: 45, fill: "#e2aa59" }));
   }
-  svg.append(svgEl("text", { x: 20, y: 142, fill: "currentColor", "font-size": 12 }, "按告警量缩放；总体发生率与检测率为假设输入。"));
-  if (!isSVG) container.replaceChildren(svg);
+  const legend = el("div", "risk-chart-legend");
+  for (const [color, label] of [["#36b6a4", format("ui.attackAlertCount", "攻击告警 {count}", { count: number(tp) })],
+    ["#e2aa59", format("ui.legitimateAlertCount", "正常会话误告警 {count}", { count: number(fp) })]]) {
+    const row = el("div", "risk-chart-legend-item");
+    const swatch = el("span", "risk-chart-swatch");
+    swatch.style.backgroundColor = color;
+    swatch.setAttribute("aria-hidden", "true");
+    row.append(swatch, el("span", "", label));
+    legend.append(row);
+  }
+  const nodes = [svg];
+  if (alerts <= 0) nodes.push(el("p", "risk-chart-caption", "当前假设下无告警"));
+  nodes.push(legend,
+    el("p", "risk-chart-caption", text("ui.riskChartScale", "条形表示两类预期告警在总告警中的比例。")),
+    el("p", "risk-chart-caption", text("ui.riskChartUnit", "单位：预期会话数；所有输入均为假设条件。")));
+  container.replaceChildren(...nodes);
 }
 
 function protocolPlan() {
@@ -584,7 +634,7 @@ function renderProtocolPreview() {
   if (!container) return;
   const plan = protocolPlan();
   container.textContent = format("ui.protocolPreview", "选择 {count} 个隔离因素：{axes}。导出文件将标记为待验证的研究设计。", {
-    count: plan.held_out_axes.length, axes: plan.held_out_axes.join(" / ") || literal("尚未选择"),
+    count: plan.held_out_axes.length, axes: plan.held_out_axes.map(axis => text(`ui.axis.${axis}`, axis)).join(" / ") || literal("尚未选择"),
   });
 }
 
@@ -653,14 +703,20 @@ function renderFigures() {
       preview.setAttribute("aria-label", format("ui.openFigure", "打开 {title} 大图", { title }));
       card.append(preview);
     }
-    if (figure.data_type) body.append(el("span", "badge figure-type", literal(figure.data_type)));
+    if (figure.data_type) {
+      const type = el("span", "badge figure-type", text(`ui.figureType.${figure.data_type}`, literal(figure.data_type)));
+      type.title = text(`ui.figureScope.${figure.data_type}`, "");
+      body.append(type);
+    }
     body.append(el("h3", "", title));
-    if (figure.description) body.append(el("p", "", figure.description));
+    const description = state.language === "en" ? figure.description_en || figure.description || ""
+      : figure.description_zh || figure.description || "";
+    if (description) body.append(el("p", "", description));
     const actions = el("div", "figure-actions");
     for (const [format, value] of [["PNG", png], ["PDF", figure.pdf || files.pdf], ["SVG", figure.svg || files.svg],
       ["可编辑材料", figure.source || figure.source_url || figure.source_folder || files.source]]) {
       if (!safeURL(value)) continue;
-      const anchor = link(format, value, "button secondary");
+      const anchor = link(text(`ui.figureDownload.${format}`, literal(format)), value, "button secondary");
       if (format !== "可编辑材料") anchor.setAttribute("download", "");
       actions.append(anchor);
     }
@@ -672,9 +728,13 @@ function renderFigures() {
 }
 
 function setupPreferences() {
-  let savedTheme;
-  try { savedTheme = localStorage.getItem("face-fraud-theme"); } catch { /* Storage may be unavailable. */ }
-  const theme = ["light", "dark"].includes(savedTheme) ? savedTheme : "dark";
+  let savedTheme, savedLanguage;
+  try {
+    savedTheme = localStorage.getItem(PREFERENCE_KEYS.theme);
+    savedLanguage = localStorage.getItem(PREFERENCE_KEYS.language);
+  } catch { /* Storage may be unavailable. */ }
+  const theme = ["light", "dark"].includes(savedTheme) ? savedTheme : "light";
+  state.language = ["en", "zh"].includes(savedLanguage) ? savedLanguage : "en";
   document.documentElement.dataset.theme = theme;
   const themeButton = $("#theme-toggle");
   const updateThemeButton = () => {
@@ -687,7 +747,7 @@ function setupPreferences() {
   themeButton?.addEventListener("click", () => {
     const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
     document.documentElement.dataset.theme = next;
-    try { localStorage.setItem("face-fraud-theme", next); } catch { /* No persistence required. */ }
+    try { localStorage.setItem(PREFERENCE_KEYS.theme, next); } catch { /* No persistence required. */ }
     updateThemeButton();
   });
   const languageButton = $("#lang-toggle");
@@ -695,6 +755,7 @@ function setupPreferences() {
   if (languageButton && dictionary?.zh && dictionary?.en) {
     languageButton.addEventListener("click", () => {
       state.language = state.language === "zh" ? "en" : "zh";
+      try { localStorage.setItem(PREFERENCE_KEYS.language, state.language); } catch { /* No persistence required. */ }
       applyLanguage();
       updateThemeButton();
     });
@@ -773,9 +834,11 @@ async function fetchData(filename) {
 }
 
 async function loadData() {
-  const tasks = ["catalog.json", "benchmarks.json", "taxonomy.json", "assets.json"];
+  const tasks = ["catalog.json", "benchmarks.json", "taxonomy.json", "assets.json", "reading-notes.en.json"];
   const results = await Promise.allSettled(tasks.map(fetchData));
-  const [catalog, benchmarks, taxonomy, assets] = results.map(result => result.status === "fulfilled" ? result.value : null);
+  const [catalog, benchmarks, taxonomy, assets, readingNotes] = results.map(result => result.status === "fulfilled" ? result.value : null);
+  const notes = readingNotes?.notes || readingNotes;
+  state.readingNotes = notes && typeof notes === "object" && !Array.isArray(notes) ? notes : {};
   if (catalog && Array.isArray(catalog.papers)) {
     const seen = new Set();
     state.papers = catalog.papers.filter(paper => paper.id && !seen.has(paper.id) && seen.add(paper.id));

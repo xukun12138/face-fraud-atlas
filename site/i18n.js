@@ -386,7 +386,7 @@ const ATLAS_DYNAMIC_LABELS = {
     "ui.literal.协议范围": "Protocol scope",
     "ui.literal.计数依据": "Count basis",
     "ui.literal.推导说明": "Derivation",
-    "ui.literal.附加计数（原始字段）": "Additional counts (original fields)",
+    "ui.literal.附加计数（原始字段）": "Additional counts and their scope",
     "ui.literal.限制 / 原文差异": "Limitations / source discrepancy",
     "ui.literal.来源定位": "Source location",
     "ui.literal.原论文": "Original paper",
@@ -441,7 +441,7 @@ const ATLAS_DYNAMIC_LABELS = {
     "ui.openFigure": "Open a larger view of {title}",
     "ui.searchPlaceholder": "Search titles, authors, venues or keywords…",
     "ui.searchAria": "Search the literature",
-    "ui.originalNotes": "Contributions, limitations and evidence notes retain the reviewed catalog’s original language.",
+    "ui.originalNotes": "Some reading notes are available only in the original Chinese; an English translation is not yet available.",
     "ui.workflow.onboarding": "Remote onboarding",
     "ui.workflow.authentication": "Authentication",
     "ui.workflow.payment": "Payment authorization",
@@ -450,11 +450,11 @@ const ATLAS_DYNAMIC_LABELS = {
     "ui.entry.injection": "Digital injection",
     "ui.entry.reference": "Reference contamination",
     "ui.entry.compound": "Compound attack",
-    "ui.axis.identity": "Identity",
-    "ui.axis.source": "Original source",
-    "ui.axis.generator": "Generator",
-    "ui.axis.device": "Device and channel",
-    "ui.axis.time": "Time"
+    "ui.axis.identity": "Participant identity",
+    "ui.axis.source": "Original media source",
+    "ui.axis.generator": "Attack generator or synthesis method",
+    "ui.axis.device": "Capture device or delivery channel",
+    "ui.axis.time": "Acquisition period"
   }
 };
 for (const [language, labels] of Object.entries(ATLAS_DYNAMIC_LABELS)) {
@@ -476,17 +476,110 @@ const ATLAS_RELEVANCE_LABELS = {
     "ui.literal.类别表示与金融验证的关联方式，不是研究质量或证据强弱排序。": "类别表示与金融验证的关联方式，不是研究质量或证据强弱排序。"
   },
   "en": {
-    "ui.evidence.direct-system": "Financial-system study",
+    "ui.evidence.direct-system": "Financial verification system study",
     "ui.evidence.identity-verification": "Identity-verification study",
-    "ui.evidence.component-transfer": "Component transfer",
-    "ui.evidence.context": "Context and surveys",
-    "ui.evidence.official": "Standards and guidance context",
-    "ui.financialEvidence": "Financial relevance: {kind}",
-    "ui.literal.金融相关证据": "Financial-related evidence",
+    "ui.evidence.component-transfer": "Detection or biometric component study",
+    "ui.evidence.context": "Survey or contextual evidence",
+    "ui.evidence.official": "Official standard or guidance",
+    "ui.financialEvidence": "Study context: {kind}",
+    "ui.literal.金融相关证据": "Relationship to financial verification",
     "ui.literal.类别表示与金融验证的关联方式，不是研究质量或证据强弱排序。": "These categories describe relevance to financial verification, not research quality or a ranking of evidence strength."
   }
 };
 for (const [language, labels] of Object.entries(ATLAS_RELEVANCE_LABELS)) {
+  for (const [key, value] of Object.entries(labels)) {
+    if (!(key in window.ATLAS_I18N[language])) window.ATLAS_I18N[language][key] = value;
+  }
+}
+
+/* Reader-facing explanations preserve the original units and study scope. */
+const ATLAS_READER_LABELS = {
+  en: {
+    "ui.coreVenue": "Core venue in this collection",
+    "ui.literal.真实 / 真人类数量": "Genuine / bona fide class count",
+    "ui.literal.呈现攻击 / 操纵类数量": "Presentation-attack / manipulated class count",
+    "ui.coreVenueNote": "Core venue is a source-selection category used by this survey. It is not a ranking of individual papers or a guarantee of financial deployment evidence.",
+    "ui.evidenceDescription.direct-system": "A study of financial verification systems in the versions examined by its authors. The category does not establish the security of present-day deployments.",
+    "ui.evidenceDescription.identity-verification": "A study of an identity-verification workflow or protocol. Its relationship to financial applications depends on the system and threat model evaluated.",
+    "ui.evidenceDescription.component-transfer": "A detection or biometric component study. Connecting its results to a financial workflow requires additional system-level evaluation.",
+    "ui.evidenceDescription.context": "A survey or contextual study that supports the conceptual or technical background.",
+    "ui.evidenceDescription.official": "A standard, regulatory document or official guidance. Applicability depends on jurisdiction, edition and the covered workflow.",
+    "ui.benchmarkCount.enrollment_count": "Enrollment videos",
+    "ui.benchmarkCount.full_collection_including_enrollment": "Videos in the full collection, including enrollment",
+    "ui.benchmarkCount.class_sum": "Sum of the reported video class counts",
+    "ui.benchmarkCount.presentation_total": "Underlying presentation events",
+    "ui.benchmarkCount.streams_per_presentation": "Modality streams per presentation",
+    "ui.benchmarkCount.channels_per_presentation": "Channels per presentation",
+    "ui.benchmarkCount.dataset_introduction_year": "Dataset introduction year",
+    "ui.benchmarkCount.additional_release_real_videos": "Additional genuine videos in the release",
+    "ui.benchmarkCount.test_list_count": "Videos in the published test list",
+    "ui.benchmarkCount.hidden_set_count": "Videos in the hidden test set",
+    "ui.benchmarkCount.raw_manipulations": "Raw manipulated videos before perturbation variants",
+    "ui.benchmarkCount.standard_benchmark_total": "Videos in the standard benchmark subset",
+    "ui.benchmarkCount.deepfake_source_video_count": "Deepfake source videos",
+    "ui.benchmarkCount.face_image_count": "Extracted face images",
+    "ui.benchmarkCount.broader_acquisition_actor_count": "Actors in the broader acquisition",
+    "ui.benchmarkCount.broader_raw_source_video_count": "Raw source videos in the broader acquisition",
+    "ui.figureType.conceptual": "Conceptual diagram",
+    "ui.figureType.catalog-derived": "Literature selection statistics",
+    "ui.figureType.source-derived": "Original-paper dataset statistics",
+    "ui.figureType.analytical scenarios": "Hypothetical risk calculations",
+    "ui.figureScope.conceptual": "A synthesis of attack mechanisms, evidence requirements or evaluation design. It does not report measured detector performance.",
+    "ui.figureScope.catalog-derived": "Counts of the research selected for this survey. These distributions describe this collection, not the prevalence of topics across the entire field.",
+    "ui.figureScope.source-derived": "Dataset counts reported in the original papers, with their versions, units and counting scope. Counts are not detector performance results.",
+    "ui.figureScope.analytical scenarios": "Calculated consequences of explicitly stated assumptions. These scenarios are not observations of a bank or deployed detector.",
+    "ui.figureDownload.PNG": "PNG image",
+    "ui.figureDownload.PDF": "PDF vector",
+    "ui.figureDownload.SVG": "SVG vector",
+    "ui.figureDownload.可编辑材料": "Source and data",
+    "ui.riskChartScale": "The bar shows each alert type's share of all expected alerts.",
+    "ui.riskChartUnit": "Unit: expected sessions; all input rates are hypothetical.",
+    "ui.riskMetricExplanation": "Alert precision, or positive predictive value (PPV), is expected attack alerts divided by all expected alerts. Every count is a number of sessions."
+  },
+  zh: {
+    "ui.coreVenue": "本选集的核心发表来源",
+    "ui.literal.真实 / 真人类数量": "真实 / 真人类数量",
+    "ui.literal.呈现攻击 / 操纵类数量": "呈现攻击 / 操纵类数量",
+    "ui.coreVenueNote": "核心来源是本综述选择发表来源的类别，不是单篇论文质量排名，也不保证论文提供金融部署证据。",
+    "ui.evidenceDescription.direct-system": "作者研究的特定历史版本金融验证系统，不表示当前部署系统仍存在相同问题。",
+    "ui.evidenceDescription.identity-verification": "身份验证工作流或协议研究；与金融应用的关系取决于被评估的系统和威胁模型。",
+    "ui.evidenceDescription.component-transfer": "检测或生物识别组件研究；结果与金融工作流之间的联系仍需系统评估。",
+    "ui.evidenceDescription.context": "支持概念或技术背景的综述及相关研究。",
+    "ui.evidenceDescription.official": "标准、监管文件或官方指导；适用范围取决于司法辖区、版本及所覆盖的工作流。",
+    "ui.benchmarkCount.enrollment_count": "注册视频数",
+    "ui.benchmarkCount.full_collection_including_enrollment": "包含注册数据的完整集合视频数",
+    "ui.benchmarkCount.class_sum": "论文两类视频计数之和",
+    "ui.benchmarkCount.presentation_total": "底层呈现事件数",
+    "ui.benchmarkCount.streams_per_presentation": "每个呈现事件的模态流数",
+    "ui.benchmarkCount.channels_per_presentation": "每个呈现事件的通道数",
+    "ui.benchmarkCount.dataset_introduction_year": "数据集首次介绍年份",
+    "ui.benchmarkCount.additional_release_real_videos": "发布版本中额外的真实视频数",
+    "ui.benchmarkCount.test_list_count": "公开测试清单的视频数",
+    "ui.benchmarkCount.hidden_set_count": "隐藏测试集的视频数",
+    "ui.benchmarkCount.raw_manipulations": "扰动派生前的原始操纵视频数",
+    "ui.benchmarkCount.standard_benchmark_total": "标准评测子集的视频数",
+    "ui.benchmarkCount.deepfake_source_video_count": "深伪源视频数",
+    "ui.benchmarkCount.face_image_count": "提取的人脸图像数",
+    "ui.benchmarkCount.broader_acquisition_actor_count": "更广泛采集范围的演员人数",
+    "ui.benchmarkCount.broader_raw_source_video_count": "更广泛采集范围的原始源视频数",
+    "ui.figureType.conceptual": "概念图",
+    "ui.figureType.catalog-derived": "综述文献选集统计",
+    "ui.figureType.source-derived": "原论文数据集统计",
+    "ui.figureType.analytical scenarios": "假设风险计算",
+    "ui.figureScope.conceptual": "综合呈现攻击机制、证据要求或评估设计，不报告实测检测性能。",
+    "ui.figureScope.catalog-derived": "本综述所选研究的数量分布，不表示整个领域的主题比例。",
+    "ui.figureScope.source-derived": "原论文报告的数据集数量及对应版本、单位和计数范围，不是检测性能结果。",
+    "ui.figureScope.analytical scenarios": "根据明确假设计算的结果，不是银行或已部署检测器的观察数据。",
+    "ui.figureDownload.PNG": "PNG 图片",
+    "ui.figureDownload.PDF": "PDF 矢量图",
+    "ui.figureDownload.SVG": "SVG 矢量图",
+    "ui.figureDownload.可编辑材料": "源代码与数据",
+    "ui.riskChartScale": "条形表示两类预期告警在总告警中的比例。",
+    "ui.riskChartUnit": "单位：预期会话数；所有输入率均为假设条件。",
+    "ui.riskMetricExplanation": "告警精确率（PPV）是预期攻击告警数除以预期总告警数；所有计数单位均为会话。"
+  }
+};
+for (const [language, labels] of Object.entries(ATLAS_READER_LABELS)) {
   for (const [key, value] of Object.entries(labels)) {
     if (!(key in window.ATLAS_I18N[language])) window.ATLAS_I18N[language][key] = value;
   }

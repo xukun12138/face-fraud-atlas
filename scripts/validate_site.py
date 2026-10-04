@@ -35,6 +35,14 @@ ids={paper['id'] for paper in papers}
 require(len(ids)==len(papers), 'Duplicate literature IDs')
 require(all(p['title'] and p['venue'] and p['source_url'] and p['bibtex'] for p in papers),'Incomplete source-backed metadata')
 research=[p for p in papers if p['is_research']]
+english_notes = documents.get('reading-notes.en', {})
+require(english_notes.get('schema_version') == '1.0', 'Missing or unsupported English reading notes')
+notes = english_notes.get('notes', {})
+require(set(notes) == {p['id'] for p in research}, 'English reading-note IDs disagree with the research collection')
+for paper_id, note in notes.items():
+    require(all(isinstance(note.get(key), str) and note[key].strip()
+                for key in ('contribution', 'limitations', 'evidence_note')),
+            f'Incomplete English reading note: {paper_id}')
 stats=documents['stats']
 require(documents['catalog']['research_count']==len(research),'Research count disagreement')
 require(documents['catalog']['official_count']==len(papers)-len(research),'Official count disagreement')

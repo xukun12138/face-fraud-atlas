@@ -36,6 +36,7 @@ jobs:
         run: |
           node --check site/app.js
           node --check site/i18n.js
+          node --check site/content.js
           node scripts/test_app.mjs
 
       - name: Validate static bundle

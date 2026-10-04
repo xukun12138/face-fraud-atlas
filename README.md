@@ -16,6 +16,8 @@ Face Fraud Atlas connects presentation attack detection, digital manipulation de
 
 The organizing framework has four requirements: **media authenticity, identity consistency, capture and session provenance, and valid business authorization**. A visually authentic face, a correct identity match, and an authorized financial action require different evidence.
 
+The website opens in **English and light mode**. Language and theme controls remember your explicit choices. All 141 research records include English contribution, limitation and evidence-scope notes. The layout keeps text readable on phones, expands scientific figures to their natural proportions, and keeps wide comparison tables inside their own scrolling area.
+
 > **Research status:** this resource accompanies an anonymous research manuscript draft. The website is live on GitHub Pages; literature, benchmark definitions and analytical scenarios retain their source and scope notes.
 
 ## Explore the evidence
@@ -77,7 +79,7 @@ paper-source/               Manuscript bibliography and research sources
 Figure_Data/                Editable figure materials and provenance
 scripts/build_catalog.py    Source tables → browser-ready JSON
 site/
-  data/                     Generated catalog, benchmarks, taxonomy, statistics, assets
+  data/                     Generated collections, asset manifest, English reading notes
   assets/figures/            Website figure previews
   downloads/                Public research download bundle
 docs/                       Design, schema, deployment, and cover asset

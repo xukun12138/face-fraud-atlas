@@ -13,6 +13,9 @@ import vm from 'node:vm';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const appPath = resolve(root, 'site/app.js');
 const catalog = JSON.parse(await readFile(resolve(root, 'site/data/catalog.json'), 'utf8'));
+const readingNotes = JSON.parse(await readFile(resolve(root, 'site/data/reading-notes.en.json'), 'utf8')).notes;
+const i18nSource = await readFile(resolve(root, 'site/i18n.js'), 'utf8');
+const contentSource = await readFile(resolve(root, 'site/content.js'), 'utf8');
 const source = await readFile(appPath, 'utf8');
 const downloads = [], timers = [], blobs = new Map();
 let blobSequence = 0;
@@ -27,6 +30,7 @@ class Element {
     this.checked = false;
     this.removed = false;
     this._text = '';
+    this.listeners = new Map();
   }
   set textContent(value) { this._text = String(value); this.children = []; }
   get textContent() { return this._text + this.children.map(child => child.textContent ?? String(child)).join(''); }
@@ -34,6 +38,13 @@ class Element {
   replaceChildren(...children) { this._text = ''; this.children = [...children]; }
   setAttribute(name, value) { this.attributes.set(name, String(value)); }
   getAttribute(name) { return this.attributes.get(name); }
+  addEventListener(name, callback) {
+    const listeners = this.listeners.get(name) ?? [];
+    listeners.push(callback); this.listeners.set(name, listeners);
+  }
+  dispatch(name) { for (const callback of this.listeners.get(name) ?? []) callback({ target: this }); }
+  closest() { return null; }
+  querySelectorAll() { return []; }
   remove() { this.removed = true; }
   click() {
     assert.equal(this.tagName, 'A', 'Only download anchors should be clicked in this harness');
@@ -49,6 +60,8 @@ for (const selector of ['#paper-search', '#role-filter', '#year-filter', '#type-
 }
 const riskResults = new Element('div');
 inputs.set('#risk-results', riskResults);
+inputs.set('#theme-toggle', new Element('button'));
+inputs.set('#lang-toggle', new Element('button'));
 const axes = ['identity', 'source', 'generator', 'device', 'time'].map(axis => {
   const input = new Element();
   input.checked = true;
@@ -59,6 +72,7 @@ const document = {
   readyState: 'loading',
   baseURI: 'http://localhost:8765/',
   body: new Element('body'),
+  documentElement: new Element('html'),
   addEventListener() { /* Leave DOMContentLoaded pending: do not boot an artificial UI. */ },
   querySelector(selector) { return inputs.get(selector) ?? null; },
   querySelectorAll(selector) { return selector === '[data-protocol-axis]' ? axes : []; },
@@ -76,23 +90,49 @@ class CapturedURL extends URL {
   static revokeObjectURL(url) { blobs.delete(url); }
 }
 
+const preferences = new Map([['face-fraud-theme', 'dark'], ['face-fraud-language', 'zh']]);
 const context = vm.createContext({
   document, URL: CapturedURL, Blob, console,
+  localStorage: { getItem: key => preferences.get(key) ?? null, setItem: (key, value) => preferences.set(key, value) },
   window: { setTimeout(callback, delay) { timers.push({ callback, delay }); return timers.length; } },
   __MODULE_URL__: pathToFileURL(appPath).href,
 });
+new vm.Script(i18nSource, { filename: resolve(root, 'site/i18n.js') }).runInContext(context);
+new vm.Script(contentSource, { filename: resolve(root, 'site/content.js') }).runInContext(context);
+context.ATLAS_I18N = context.window.ATLAS_I18N;
 
 // vm.Script parses classic JavaScript, so only the unused module-URL syntax is
 // adapted. Every export, filter, CSV encoder, protocol, and risk implementation
 // below is executed from the production source, not copied into this test.
 assert.equal((source.match(/import\.meta\.url/g) ?? []).length, 1, 'Review harness if module URL usage changes');
 const bridge = `\n;globalThis.atlasTest = {
-  seed(records) { state.papers = records; },
-  filteredPapers, exportCSV, exportBib, exportProtocol, protocolPlan, riskInputs, renderRisk
+  seed(records, notes = {}) { state.papers = records; state.readingNotes = notes; },
+  get language() { return state.language; },
+  filteredPapers, exportCSV, exportBib, exportProtocol, protocolPlan, riskInputs, renderRisk,
+  setupPreferences, readingField
 };`;
 new vm.Script(source.replace('import.meta.url', '__MODULE_URL__') + bridge, { filename: appPath }).runInContext(context);
 const app = context.atlasTest;
-app.seed(catalog.papers);
+assert.equal(app.language, 'en', 'Initial application state is English');
+app.setupPreferences();
+assert.equal(document.documentElement.dataset.theme, 'light', 'Legacy dark preference does not override the new default');
+assert.equal(app.language, 'en', 'Legacy Chinese preference does not override the new default');
+inputs.get('#theme-toggle').dispatch('click');
+inputs.get('#lang-toggle').dispatch('click');
+assert.equal(preferences.get('face-fraud-atlas.preferences.v2.theme'), 'dark');
+assert.equal(preferences.get('face-fraud-atlas.preferences.v2.language'), 'zh');
+inputs.get('#theme-toggle').dispatch('click');
+inputs.get('#lang-toggle').dispatch('click');
+assert.equal(preferences.get('face-fraud-atlas.preferences.v2.theme'), 'light');
+assert.equal(preferences.get('face-fraud-atlas.preferences.v2.language'), 'en');
+app.seed(catalog.papers, readingNotes);
+for (const paper of catalog.papers.filter(paper => paper.is_research)) {
+  assert.ok(readingNotes[paper.id], `English reading notes exist for ${paper.id}`);
+  for (const field of ['contribution', 'limitations', 'evidence_note']) {
+    assert.equal(app.readingField(paper, field), readingNotes[paper.id][field] || paper[field] || '');
+    assert.doesNotMatch(app.readingField(paper, field), /[\u3400-\u9fff]/);
+  }
+}
 
 function captureDownload(callback, filename) {
   const before = downloads.length;
@@ -198,10 +238,11 @@ assert.ok(Number.isFinite(Date.parse(protocol.exported_at)));
 
 const riskCases = [
   { name: 'illustrative default', values: [0.1, 90, 1, 100000], expected: ['90', '999', '1,089', '8.26%', '10', '98,901'] },
-  { name: 'zero prevalence and zero false alarms', values: [0, 100, 0, 100], expected: ['0', '0', '0', '无告警，未定义', '0', '100'] },
+  { name: 'zero prevalence and zero false alarms', values: [0, 100, 0, 100], expected: ['0', '0', '0', 'Undefined: no alerts', '0', '100'] },
   { name: 'all attacks detected', values: [100, 100, 0, 10], expected: ['10', '0', '10', '100%', '0', '0'] },
   { name: 'all legitimate sessions alerted', values: [0, 100, 100, 10], expected: ['0', '10', '10', '0%', '0', '0'] },
-  { name: 'all attacks missed and no alerts', values: [100, 0, 0, 10], expected: ['0', '0', '0', '无告警，未定义', '10', '0'] },
+  { name: 'all attacks missed and no alerts', values: [100, 0, 0, 10], expected: ['0', '0', '0', 'Undefined: no alerts', '10', '0'] },
+  { name: 'fractional alerts in a one-session expectation', values: [0.1, 90, 0.01, 1], expected: ['0.0009', '0.0000999', '0.001', '90.01%', '0.0001', '1'] },
 ];
 for (const test of riskCases) {
   setRisk(...test.values);
@@ -223,6 +264,8 @@ for (const timer of timers) { assert.equal(timer.delay, 1500); timer.callback();
 assert.equal(blobs.size, 0, 'All created object URLs are eventually revoked');
 console.log(JSON.stringify({
   result: 'passed',
+  default_preferences: 'English and light; legacy preferences ignored; new manual choices persisted',
+  english_reading_notes: Object.keys(readingNotes).length,
   morph_csv_rows: csv.length - 1,
   morph_bib_entries: bibIDs.length,
   csv_punctuation_round_trip: 'quotes, commas, CRLF, LF and Unicode preserved',

@@ -13,8 +13,11 @@ From the repository root, `python scripts/build_catalog.py` reads local, portabl
 | `site/data/taxonomy.json` | `claims: object[]`, `scenarios: object[]` | Four evidence requirements and research scenarios |
 | `site/data/stats.json` | Aggregate fields and count maps | Descriptive statistics of this selected corpus |
 | `site/data/assets.json` | `figures: object[]`, `downloads: object[]` | Display and download manifest, maintained alongside the corresponding files |
+| `site/data/reading-notes.en.json` | `notes: object` keyed by research ID | English display text for contributions, limitations and evidence scope; maintained with source annotations |
 
 The catalog key `papers` is retained for the interface contract; it does not mean every record is a research paper. By default the explorer selects research only. IDs are stable and match the manuscript's bibliography where applicable. Unknown strings are empty; unknown numerical benchmark values are `null`. Zero is a genuine reported or derived zero, not a missing-value marker.
+
+English reading notes use `schema_version: "1.0"` and `notes: { ID: { contribution, limitations, evidence_note } }`. Each field is a nonempty string. The site validator requires exactly the current research IDs, without assuming a fixed collection size. Keep translations faithful to the source annotations, including numerical conditions and the distinction between system evidence and a possible transfer to finance. Official-resource records use their existing notes. English notes are a presentation overlay; the builder does not overwrite them or alter the catalog's source fields. Search and detail text use the current interface language. CSV and BibTeX exports preserve the selected records' bibliographic fields; the full downloadable catalog preserves source annotations.
 
 ## Catalog envelope
 

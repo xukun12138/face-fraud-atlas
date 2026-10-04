@@ -713,11 +713,10 @@ function renderFigures() {
       : figure.description_zh || figure.description || "";
     if (description) body.append(el("p", "", description));
     const actions = el("div", "figure-actions");
-    for (const [format, value] of [["PNG", png], ["PDF", figure.pdf || files.pdf], ["SVG", figure.svg || files.svg],
-      ["可编辑材料", figure.source || figure.source_url || figure.source_folder || files.source]]) {
+    for (const [format, value] of [["PNG", png], ["PDF", figure.pdf || files.pdf], ["SVG", figure.svg || files.svg]]) {
       if (!safeURL(value)) continue;
       const anchor = link(text(`ui.figureDownload.${format}`, literal(format)), value, "button secondary");
-      if (format !== "可编辑材料") anchor.setAttribute("download", "");
+      anchor.setAttribute("download", "");
       actions.append(anchor);
     }
     body.append(actions);

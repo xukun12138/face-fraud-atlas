@@ -63,9 +63,14 @@ for benchmark in documents['benchmarks']['benchmarks']:
     require(benchmark.get('version') and benchmark.get('unit'),f'Missing counting context: {benchmark["id"]}')
 for figure in documents['assets']['figures']:
     for ext in ('png','svg','pdf'): local_file(figure[ext])
-    require((ROOT/figure['source_folder']/'draw.py').is_file(),f'Figure not editable: {figure["id"]}')
+    require(not any(figure.get(key) for key in ('source', 'source_folder', 'source_url')),
+            f'Nonpublic figure source advertised: {figure["id"]}')
 for item in documents['assets']['downloads']: local_file(item['href'])
+for private_path in ('Figure_Data', 'site/downloads/manuscript.pdf',
+                     'site/downloads/manuscript.tex', 'site/downloads/latex-project.zip',
+                     'site/downloads/Figure_Data.zip'):
+    require(not (ROOT/private_path).exists(), f'Nonpublic material present: {private_path}')
 require(not any(path.is_symlink() for path in SITE.rglob('*')), 'Unexpected site symlink')
 if errors:
     print('\n'.join(errors)); sys.exit(1)
-print(f'Validated {len(papers)} literature records, {len(documents["benchmarks"]["benchmarks"])} benchmark records, editable figure sources and every HTML/manifest resource.')
+print(f'Validated {len(papers)} literature records, {len(documents["benchmarks"]["benchmarks"])} benchmark records, public figure previews and every HTML/manifest resource; nonpublic materials absent.')

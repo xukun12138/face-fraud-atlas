@@ -9,3 +9,10 @@ node_modules/
 *.aux
 *.blg
 *.out
+
+# Research materials are maintained outside this public repository.
+/Figure_Data/
+/site/downloads/manuscript.pdf
+/site/downloads/manuscript.tex
+/site/downloads/latex-project.zip
+/site/downloads/Figure_Data.zip

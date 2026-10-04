@@ -183,3 +183,31 @@ Object.assign(window.ATLAS_I18N.zh, {
   "topicPrecision": "告警精确率",
   "topicProtocol": "评测协议"
 });
+
+Object.assign(window.ATLAS_I18N.en, {
+  "heroNote": "Research companion · Literature, benchmarks and evaluation tools",
+  "metricFigures": "Research figures",
+  "figureTeaserTitle": "Visual explanations of evidence and evaluation.",
+  "figureTeaserText": "Explore ten research figures with interpretation notes. See the workflow, attack taxonomy, benchmark definitions and evaluation assumptions in context.",
+  "figuresEyebrow": "Evidence and interpretation",
+  "figuresEyebrowPage": "Visual research explanations",
+  "figuresTitle": "Explore the research figures",
+  "figuresLead": "Inspect the argument and assumptions behind each figure. Open a full-size image or download a rendered vector graphic.",
+  "figuresNotice": "This gallery provides rendered PNG, PDF and SVG figures. Source-derived statistics, analytical scenarios and conceptual illustrations are distinguished. Figure labels use Arial.",
+  "downloadsEyebrow": "Bibliography and structured catalogs",
+  "resourcesLead": "Download the bibliography and structured literature and benchmark catalogs. Publication and dataset sources remain linked from the corresponding records."
+});
+
+Object.assign(window.ATLAS_I18N.zh, {
+  "heroNote": "研究配套资源 · 文献、基准与评测工具",
+  "metricFigures": "研究插图",
+  "figureTeaserTitle": "用图像理解检测证据与评估逻辑。",
+  "figureTeaserText": "浏览十幅研究插图与解释说明，在具体语境中理解工作流、攻击分类、基准定义与评估假设。",
+  "figuresEyebrow": "证据与解释",
+  "figuresEyebrowPage": "研究逻辑的可视化",
+  "figuresTitle": "浏览研究插图",
+  "figuresLead": "查看每幅图的论点与假设，打开完整尺寸的图像，或下载已经绘制好的矢量图。",
+  "figuresNotice": "本页提供已经绘制好的PNG、PDF和SVG插图，区分来源统计、解析场景与概念示意。插图文字使用Arial字体。",
+  "downloadsEyebrow": "参考文献与结构化目录",
+  "resourcesLead": "下载参考文献、结构化文献目录与基准目录。论文与数据集的原始来源保留在对应记录中。"
+});

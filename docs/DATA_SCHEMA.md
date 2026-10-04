@@ -4,7 +4,7 @@ Schema version: **1.0**. All JSON is UTF-8. This document describes the current 
 
 ## Sources and generated collections
 
-From the repository root, `python scripts/build_catalog.py` reads local, portable inputs: `data/catalog-records.csv`, `data/benchmark-sources.csv`, and `paper-source/sample-base.bib`. It uses the Python standard library and does not retrieve network data. It generates the catalog, benchmarks, taxonomy, and statistics JSON files and automatically synchronizes `site/downloads/paper-catalog.csv` and `site/downloads/benchmark-catalog.csv`. The figure/download manifest and research bundles are updated separately during release preparation. Run `python scripts/validate_site.py` after rebuilding to check resources and data boundaries; the Pages build runs the same validator. The initial import options are described by `python scripts/build_catalog.py --help`; ordinary maintenance uses the local inputs.
+From the repository root, `python scripts/build_catalog.py` reads local, portable inputs: `data/catalog-records.csv`, `data/benchmark-sources.csv`, and `paper-source/sample-base.bib`. It uses the Python standard library and does not retrieve network data. It generates the catalog, benchmarks, taxonomy, and statistics JSON files and automatically synchronizes `site/downloads/paper-catalog.csv` and `site/downloads/benchmark-catalog.csv`. The figure/download manifest is maintained alongside the corresponding public assets. Run `python scripts/validate_site.py` after rebuilding to check resources and data boundaries; the Pages build runs the same validator. The initial import options are described by `python scripts/build_catalog.py --help`; ordinary maintenance uses the local inputs.
 
 | File | Top-level collection | Meaning |
 | --- | --- | --- |
@@ -139,12 +139,10 @@ The role/year/publication/evidence maps and core/preprint percentages use **rese
 | `id` | string | Stable figure identifier, e.g. `Fig6` |
 | `title`, `title_zh` | string | English and Chinese titles consistent with the actual figure |
 | `data_type` | string | Current values: `conceptual`, `catalog-derived`, `source-derived`, `analytical scenarios` |
-| `description` | string | Interpretation and editable-material note |
+| `description` | string | Interpretation and evidence-scope note |
 | `png`, `pdf`, `svg` | string | Local display/export paths |
-| `source` | URL string | Intended public repository-tree link to the editable figure folder |
-| `source_folder` | string | Corresponding path under the **repository root**, e.g. `Figure_Data/Fig6_Benchmarks`; not a path served under `site/` |
 
-Each download record has `id`, `title`, and `href`; `href` is relative to `site/`. The initial manifest contains six material links, while the repository also includes `downloads/manuscript.tex` as a directly accessible source file. PNG/PDF/SVG are display/export formats; source materials must also retain data and provenance. The current ten-figure collection is not a hardcoded limit. Repository-tree links become public only when that repository is published; their presence in the manifest does not demonstrate a live deployment.
+Each download record has `id`, `title`, and `href`; `href` is relative to `site/`. Public downloads comprise the BibTeX bibliography, paper catalog CSV, and benchmark catalog CSV. PNG/PDF/SVG figure files provide public viewing and export formats; the figure manifest does not advertise private editing materials. The current ten-figure collection is not a hardcoded limit.
 
 The interface can additionally consume `alt`, legacy `image`, or equivalent format links grouped in `files`. Those compatibility keys are optional and are not claimed to be present in every current record.
 

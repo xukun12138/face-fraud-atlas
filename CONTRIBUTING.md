@@ -9,7 +9,7 @@ The project accompanies an anonymous manuscript draft. Do not add inferred autho
 - **Add a paper or official resource:** use the [add-paper issue form](.github/ISSUE_TEMPLATE/add-paper.yml), or submit a pull request with the source record and supporting evidence.
 - **Correct a record, count, or interpretation:** use the [data-correction form](.github/ISSUE_TEMPLATE/data-correction.yml). Identify the record ID, field, current value, proposed value, and source location.
 - **Improve the interface or documentation:** describe the reader's task and the observed behavior. Include the viewport or keyboard steps for an interface issue.
-- **Improve a figure or analytical tool:** preserve its input data, generation logic, assumptions, and explanatory label. Separate measured facts from calculated scenarios and illustrations.
+- **Improve a figure or analytical tool:** document its evidence, assumptions, and explanatory label. Separate measured facts from calculated scenarios and illustrations; submit only materials approved for public release.
 
 You do not need a pull request to report an uncertainty. A precise source-backed issue is valuable on its own.
 
@@ -42,9 +42,9 @@ Do not sum or rank incompatible units. Dataset size does not establish model qua
 ## Edit and regenerate
 
 1. Update `data/catalog-records.csv`, `data/benchmark-sources.csv`, or the relevant original source file. Keep existing IDs stable; reuse the publication's existing record if adding a newer verified version rather than creating a duplicate by default.
-2. Update the bibliography in `paper-source/` if bibliographic fields change. The manuscript's bibliography intentionally omits external-link fields; preserve provenance in the catalog and audit materials.
+2. Update the bibliography in `paper-source/` if bibliographic fields change. The downloadable bibliography intentionally omits external-link fields; preserve provenance in the catalog records.
    For a research record, also maintain `site/data/reading-notes.en.json` under its stable ID. Translate the contribution, limitations and evidence-scope notes without changing quantitative conditions or adding a deployment claim. Remove its translation if the corresponding research record is removed.
-3. Run `python scripts/build_catalog.py` from the repository root. Review the four generated `site/data/` JSON files and automatically synchronized full catalog CSV downloads. Refresh the figure/download manifest and research bundles separately when affected. Do not edit exported CSVs as source data or hand-edit generated statistics to conceal a mismatch.
+3. Run `python scripts/build_catalog.py` from the repository root. Review the four generated `site/data/` JSON files and automatically synchronized full catalog CSV downloads. Maintain the figure/download manifest alongside the corresponding public assets. Do not edit exported CSVs as source data or hand-edit generated statistics to conceal a mismatch.
 4. Run `python scripts/validate_site.py`, then preview with `python -m http.server 8765 --directory site`. Check that the record appears in search and relevant filters, that its source opens correctly, and that exported fields preserve its semantics.
 5. In the pull request, explain the correction, cite its primary evidence and location, and state which generated or downloadable files changed.
 

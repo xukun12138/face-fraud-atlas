@@ -6,7 +6,7 @@
 
 ### [打开互动研究网站 ↗](https://xukun12138.github.io/face-fraud-atlas/)
 
-[检索文献](https://xukun12138.github.io/face-fraud-atlas/#library) · [比较数据集](https://xukun12138.github.io/face-fraud-atlas/#benchmarks) · [研究工具](https://xukun12138.github.io/face-fraud-atlas/#tools) · [可编辑插图](https://xukun12138.github.io/face-fraud-atlas/#figures) · 人脸欺诈研究图谱
+[检索文献](https://xukun12138.github.io/face-fraud-atlas/#library) · [比较数据集](https://xukun12138.github.io/face-fraud-atlas/#benchmarks) · [研究工具](https://xukun12138.github.io/face-fraud-atlas/#tools) · [研究插图](https://xukun12138.github.io/face-fraud-atlas/#figures) · 人脸欺诈研究图谱
 
 **连接人脸欺诈检测证据与数字金融身份核验流程的交互式研究配套项目。**
 
@@ -28,12 +28,12 @@
 | **基准数据集图谱** | 查看规模、模态、版本、协议与来源 | 保留图像、视频、人脸序列、通道流等原单位，不跨单位求和或做规模排名 |
 | **风险分析实验室** | 改变攻击基率、召回率、误告警率与会话数，查看预期告警组成 | 结果来自透明公式与设定场景，不执行人脸模型推理，不是部署性能测量 |
 | **评测协议构建器** | 选择业务流程、攻击入口及隔离因素，导出 JSON 研究计划 | 包含阈值、分组和事件要求，具体权限与指标分母仍须按实验补充；不代表已完成评测或认证 |
-| **图表与来源** | 查看十幅图的说明、原始统计及可编辑材料 | 数据来源统计、解析曲线、示意图分别解释，避免把示意当作实验结果 |
-| **研究材料下载** | 阅读完整草稿，检查 LaTeX、书目和图表数据 | 使用方式同时受论文、数据及第三方素材各自权利约束 |
+| **研究图表** | 查看十幅研究图及其解释说明 | 数据来源统计、解析曲线、示意图分别解释，避免把示意当作实验结果 |
+| **研究材料下载** | 下载 BibTeX 书目及结构化文献、基准目录 | 原始论文与数据集来源仍是研究结论与访问条件的依据 |
 
 ## 当前整理范围
 
-初始版本包含 **141 篇研究文献与 12 项官方资源，共 153 条目录记录**，另外提供 **12 个基准记录与 10 幅可编辑研究图**。这些数字属于不同集合，不能把基准和图表再次加到论文数上。后续维护应从源数据重新生成统计。
+初始版本包含 **141 篇研究文献与 12 项官方资源，共 153 条目录记录**，另外提供 **12 个基准记录与 10 幅研究图**。这些数字属于不同集合，不能把基准和图表再次加到论文数上。后续维护应从源数据重新生成统计。
 
 文献库属于选择性、来源可追溯的整理，不是穷尽数据库检索、引文排名或统一深度的全文系统评价。金融相关性区分原论文直接支持的系统证据、远程身份核验研究，以及从通用生物识别或媒体检测条件向金融场景作出的分析性迁移。数据集规模并不直接反映金融威胁的真实难度。
 
@@ -55,19 +55,15 @@ python -m http.server 8765 --directory site
 
 | 文件 | 路径 |
 | --- | --- |
-| 匿名完整论文 PDF | [site/downloads/manuscript.pdf](site/downloads/manuscript.pdf) |
-| 主 LaTeX 源码 | [site/downloads/manuscript.tex](site/downloads/manuscript.tex) |
 | BibTeX 书目 | [site/downloads/sample-base.bib](site/downloads/sample-base.bib) |
-| 完整 LaTeX 项目 | [site/downloads/latex-project.zip](site/downloads/latex-project.zip) |
-| 图表数据、可编辑源与核验记录 | [site/downloads/Figure_Data.zip](site/downloads/Figure_Data.zip) |
 | 文献目录 CSV | [site/downloads/paper-catalog.csv](site/downloads/paper-catalog.csv) |
 | 基准目录 CSV | [site/downloads/benchmark-catalog.csv](site/downloads/benchmark-catalog.csv) |
 
-论文排版中的书目不包含 DOI 和 URL 字段；可追溯链接另保留于目录和核验材料。项目提供数据集说明及原始来源入口，不重新分发人脸生物特征数据集。
+下载书目不包含 DOI 和 URL 字段；可追溯链接另保留于文献与基准目录。项目提供数据集说明及原始来源入口，不重新分发人脸生物特征数据集。
 
 ## 维护与贡献
 
-源数据位于 `data/catalog-records.csv`、`data/benchmark-sources.csv`；书目位于 `paper-source/`；可编辑图表材料位于 `Figure_Data/`。`scripts/build_catalog.py` 将输入转换为 `site/data/` 中的浏览器 JSON，并自动同步两个公开目录 CSV；随后运行 `python scripts/validate_site.py` 核对资源和记录。图与下载清单、研究压缩包在受影响时另行更新。公开预览和下载文件在 `site/` 中，与项目文档、开发输入分开保存。
+源数据位于 `data/catalog-records.csv`、`data/benchmark-sources.csv`；目录构建所用书目位于 `paper-source/sample-base.bib`。`scripts/build_catalog.py` 将输入转换为 `site/data/` 中的浏览器 JSON，并自动同步两个公开目录 CSV；随后运行 `python scripts/validate_site.py` 核对资源和记录。图与下载清单随对应公开资源一同维护。公开预览和下载文件在 `site/` 中，与项目文档、开发输入分开保存。
 
 欢迎补充文献、修正书目、核对基准版本或提出解释上的改进。请保留记录 ID，提供原论文、正式出版页或数据集作者的来源；未知字段留空，不根据占比或经验补造整数。贡献流程见 [CONTRIBUTING.md](CONTRIBUTING.md)，字段约定见 [DATA_SCHEMA.md](docs/DATA_SCHEMA.md)。
 

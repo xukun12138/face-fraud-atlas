@@ -8,7 +8,7 @@
 
 ### [Open the interactive website ↗](https://xukun12138.github.io/face-fraud-atlas/)
 
-[Explore papers](https://xukun12138.github.io/face-fraud-atlas/#library) · [Compare benchmarks](https://xukun12138.github.io/face-fraud-atlas/#benchmarks) · [Use research tools](https://xukun12138.github.io/face-fraud-atlas/#tools) · [Get editable figures](https://xukun12138.github.io/face-fraud-atlas/#figures)
+[Explore papers](https://xukun12138.github.io/face-fraud-atlas/#library) · [Compare benchmarks](https://xukun12138.github.io/face-fraud-atlas/#benchmarks) · [Use research tools](https://xukun12138.github.io/face-fraud-atlas/#tools) · [View research figures](https://xukun12138.github.io/face-fraud-atlas/#figures)
 
 [中文说明](README.zh-CN.md) · [Data schema](docs/DATA_SCHEMA.md) · [Contributing](CONTRIBUTING.md) · [Project design](docs/PROJECT_DESIGN.zh-CN.md) · [Deployment](docs/DEPLOYMENT.zh-CN.md)
 
@@ -28,12 +28,12 @@ The website opens in **English and light mode**. Language and theme controls rem
 | **Benchmark atlas** | Inspect dataset scale, modalities, versions, and protocols | Counts retain their original units; videos, images, face sequences, and channel streams are not pooled or ranked together |
 | **Risk laboratory** | Explore prevalence, recall, false alarms, and expected alert composition | Transparent analytical scenarios; no uploaded faces, trained model, or detector inference |
 | **Protocol builder** | Select a workflow, attack entry, and held-out factors; download a study design as JSON | Includes threshold, grouping, and event requirements; additional experiment-specific permissions must be specified before evaluation |
-| **Figure gallery** | Inspect ten figures alongside source data and interpretation notes | Source-derived statistics are distinguished from schematic illustrations and analytical curves |
-| **Research downloads** | Read the draft, inspect LaTeX and bibliography, and reuse the figure workflow subject to its rights | Original sources remain the authority for cited research and dataset access |
+| **Figure gallery** | View ten research figures and their interpretation notes | Source-derived statistics are distinguished from schematic illustrations and analytical curves |
+| **Research downloads** | Download the bibliography and structured paper and benchmark catalogs | Original publications remain the authority for research claims and dataset access |
 
 ### Curated collection
 
-The collection contains **141 research publications and 12 official resources**: 153 catalog records in total. The companion also provides **12 benchmark records and 10 editable research figures**. These are different collections; benchmark and figure counts are not additional publication counts. Bibliographic and benchmark provenance is included with the research materials. Future changes should update the generated statistics from the source records.
+The collection contains **141 research publications and 12 official resources**: 153 catalog records in total. The companion also provides **12 benchmark records and 10 research figures**. These are different collections; benchmark and figure counts are not additional publication counts. Bibliographic and benchmark provenance is included in the catalog records. Future changes should update the generated statistics from the source records.
 
 The catalog is a selective, source-checked collection. It is not an exhaustive census, a citation-ranking service, or evidence that every paper received the same depth of full-text analysis. Financial relevance distinguishes source-supported system evidence from an interpretation of how a general biometric or media method could transfer to finance.
 
@@ -61,32 +61,27 @@ Open **http://localhost:8765/**. Use an HTTP server because the browser loads lo
 
 | Material | Repository path |
 | --- | --- |
-| Anonymous manuscript PDF | [site/downloads/manuscript.pdf](site/downloads/manuscript.pdf) |
-| Main LaTeX source | [site/downloads/manuscript.tex](site/downloads/manuscript.tex) |
 | Bibliography | [site/downloads/sample-base.bib](site/downloads/sample-base.bib) |
-| Complete LaTeX project | [site/downloads/latex-project.zip](site/downloads/latex-project.zip) |
-| Figure data, editable sources, and provenance | [site/downloads/Figure_Data.zip](site/downloads/Figure_Data.zip) |
 | Paper catalog CSV | [site/downloads/paper-catalog.csv](site/downloads/paper-catalog.csv) |
 | Benchmark catalog CSV | [site/downloads/benchmark-catalog.csv](site/downloads/benchmark-catalog.csv) |
 
-The bibliography used in the manuscript omits DOI and URL fields for its presentation format. The catalog and source notes retain source links so the underlying metadata can be checked. The website provides dataset descriptions and original-source pointers, rather than redistributing biometric datasets.
+The downloadable bibliography omits DOI and URL fields for its presentation format. The catalogs retain source links so the underlying metadata can be checked. The website provides dataset descriptions and original-source pointers, rather than redistributing biometric datasets.
 
 ## Maintain the atlas
 
 ```text
 data/                       Editable catalog and benchmark source tables
-paper-source/               Manuscript bibliography and research sources
-Figure_Data/                Editable figure materials and provenance
+paper-source/               Bibliography used by the catalog builder
 scripts/build_catalog.py    Source tables → browser-ready JSON
 site/
   data/                     Generated collections, asset manifest, English reading notes
   assets/figures/            Website figure previews
-  downloads/                Public research download bundle
+  downloads/                Bibliography and structured catalogs
 docs/                       Design, schema, deployment, and cover asset
 .github/                    Contribution forms and Pages workflow
 ```
 
-Edit `data/catalog-records.csv`, `data/benchmark-sources.csv`, and the relevant research source files; regenerate the JSON and full catalog CSV downloads with `scripts/build_catalog.py`, then run `python scripts/validate_site.py`. Keep stable record IDs, cite the primary metadata source, and explain any version or unit change. The download manifest and research bundles are updated separately when affected. See [CONTRIBUTING.md](CONTRIBUTING.md) for the review process and [DATA_SCHEMA.md](docs/DATA_SCHEMA.md) for field semantics.
+Edit `data/catalog-records.csv`, `data/benchmark-sources.csv`, and `paper-source/sample-base.bib`; regenerate the JSON and full catalog CSV downloads with `scripts/build_catalog.py`, then run `python scripts/validate_site.py`. Keep stable record IDs, cite the primary metadata source, and explain any version or unit change. The figure and download manifest is maintained alongside the corresponding public assets. See [CONTRIBUTING.md](CONTRIBUTING.md) for the review process and [DATA_SCHEMA.md](docs/DATA_SCHEMA.md) for field semantics.
 
 ## Attribution and rights
 

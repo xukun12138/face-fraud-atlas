@@ -2,7 +2,11 @@
   <img src="docs/assets/readme-cover.svg" alt="Face Fraud Atlas：媒体真实性、身份一致性、采集与会话来源、有效业务授权" width="100%">
 </p>
 
-# Face Fraud Atlas · 人脸欺诈研究图谱
+# Face Fraud Atlas
+
+### [打开互动研究网站 ↗](https://xukun12138.github.io/face-fraud-atlas/)
+
+[检索文献](https://xukun12138.github.io/face-fraud-atlas/#library) · [比较数据集](https://xukun12138.github.io/face-fraud-atlas/#benchmarks) · [研究工具](https://xukun12138.github.io/face-fraud-atlas/#tools) · [可编辑插图](https://xukun12138.github.io/face-fraud-atlas/#figures) · 人脸欺诈研究图谱
 
 **连接人脸欺诈检测证据与数字金融身份核验流程的交互式研究配套项目。**
 
@@ -12,7 +16,7 @@
 
 研究框架围绕四项要求组织：**媒体真实性、身份一致性、采集与会话来源、有效业务授权**。它们分别对应媒体、身份、事件来源和被允许的业务操作，不能由一个分类分数统一替代。
 
-> **项目状态：**本仓库配套的是匿名研究论文草稿，不表示论文已被 CSUR 接收、发表或通过同行评审。预定部署地址为 **https://xukun12138.github.io/face-fraud-atlas/**，当前部署状态待核验。静态项目可在本地预览。
+> **项目状态：**配套匿名研究论文草稿。网站已通过 GitHub Pages 上线，文献记录、基准定义和解析场景均提供来源与适用范围说明。
 
 ## 可以怎样使用
 

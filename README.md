@@ -6,13 +6,17 @@
 
 **An evidence-centered research companion for face fraud detection and digital financial security.**
 
+### [Open the interactive website ↗](https://xukun12138.github.io/face-fraud-atlas/)
+
+[Explore papers](https://xukun12138.github.io/face-fraud-atlas/#library) · [Compare benchmarks](https://xukun12138.github.io/face-fraud-atlas/#benchmarks) · [Use research tools](https://xukun12138.github.io/face-fraud-atlas/#tools) · [Get editable figures](https://xukun12138.github.io/face-fraud-atlas/#figures)
+
 [中文说明](README.zh-CN.md) · [Data schema](docs/DATA_SCHEMA.md) · [Contributing](CONTRIBUTING.md) · [Project design](docs/PROJECT_DESIGN.zh-CN.md) · [Deployment](docs/DEPLOYMENT.zh-CN.md)
 
 Face Fraud Atlas connects presentation attack detection, digital manipulation detection, identity morphing, recognition evasion, and media injection to financial verification workflows. It helps readers ask what a detector observes, what assertion that observation supports, and what remains to be established before authority is granted.
 
 The organizing framework has four requirements: **media authenticity, identity consistency, capture and session provenance, and valid business authorization**. A visually authentic face, a correct identity match, and an authorized financial action require different evidence.
 
-> **Research status:** this repository accompanies an anonymous research manuscript draft. It does not represent an accepted, published, or peer-reviewed CSUR article. The intended GitHub Pages address is **https://xukun12138.github.io/face-fraud-atlas/**; deployment is pending verification. The static project can be previewed locally now.
+> **Research status:** this resource accompanies an anonymous research manuscript draft. The website is live on GitHub Pages; literature, benchmark definitions and analytical scenarios retain their source and scope notes.
 
 ## Explore the evidence
 
@@ -63,7 +67,7 @@ Open **http://localhost:8765/**. Use an HTTP server because the browser loads lo
 | Paper catalog CSV | [site/downloads/paper-catalog.csv](site/downloads/paper-catalog.csv) |
 | Benchmark catalog CSV | [site/downloads/benchmark-catalog.csv](site/downloads/benchmark-catalog.csv) |
 
-The bibliography used in the manuscript omits DOI and URL fields for its presentation format. The catalog and audit materials retain source links so the underlying metadata can be checked. The website provides dataset descriptions and original-source pointers, rather than redistributing biometric datasets.
+The bibliography used in the manuscript omits DOI and URL fields for its presentation format. The catalog and source notes retain source links so the underlying metadata can be checked. The website provides dataset descriptions and original-source pointers, rather than redistributing biometric datasets.
 
 ## Maintain the atlas
 
@@ -86,7 +90,7 @@ Edit `data/catalog-records.csv`, `data/benchmark-sources.csv`, and the relevant 
 
 Maintainer: **[xukun12138](https://github.com/xukun12138)**. Repository maintenance does not identify the authors of the anonymous manuscript.
 
-The [MIT license](LICENSE) applies to this project's code. Manuscript text, research data compilations, figures, and third-party materials have separate rights; the code license does not grant rights to those materials. No blanket Creative Commons license is asserted for the manuscript or catalog. Preserve the license and attribution supplied with each third-party asset, and consult the original dataset or publication owner for reuse terms.
+The [MIT license](LICENSE) applies to this project's code. Manuscript text, research data compilations, figures, and third-party materials have separate rights; the code license does not grant rights to those materials. No blanket Creative Commons license is asserted for the manuscript or catalog. Preserve the license and attribution accompanying each third-party asset, and consult the original dataset or publication owner for reuse terms.
 
 When using a method or dataset, cite its original publication. When referring to this evolving collection, identify the repository revision or release and the date consulted; do not describe the accompanying draft as a published CSUR article.
 

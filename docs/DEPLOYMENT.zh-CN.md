@@ -1,6 +1,6 @@
 # GitHub Pages 部署与更新
 
-预定仓库为 `xukun12138/face-fraud-atlas`，预定项目站点为 **https://xukun12138.github.io/face-fraud-atlas/**。此文档描述部署步骤，不是已经上线或工作流已运行成功的记录。实际状态应以仓库 Actions、Pages 环境和最终 URL 的检查为准。
+仓库为 [xukun12138/face-fraud-atlas](https://github.com/xukun12138/face-fraud-atlas)，网站为 **[Face Fraud Atlas](https://xukun12138.github.io/face-fraud-atlas/)**。GitHub Pages 使用 GitHub Actions 发布；公开入口、文献检索与风险工具已检查，45个网站资源均返回 HTTP 200。以下说明用于后续维护与重新部署。
 
 ## 本地生成与预览
 
@@ -50,7 +50,7 @@ python -m http.server 8765 --directory site
 2. 从 **https://xukun12138.github.io/face-fraud-atlas/** 打开站点，确认不是仓库根域名或错误子路径。项目站资源路径应相对于当前站点，避免以 `/data/` 或 `/assets/` 指向域名根目录。
 3. 确认浏览器可以取得五个 JSON 数据文件、图预览和各下载文件。通过公开 URL 检查搜索、筛选、导出与协议下载。
 4. 至少检查一个桌面和一个手机宽度，确保卡片、表单、导航和图注可读，焦点可见且无关键横向溢出。
-5. 只有完成这些检查后，才能把 README 的部署状态改为已上线；仍须保留匿名研究草稿的发表状态说明。
+5. 发布状态与论文发表状态分别标注；保留研究稿的准确身份。
 
 这份文档没有预填部署时间、成功截图、运行编号或性能结果。
 

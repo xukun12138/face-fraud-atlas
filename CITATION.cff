@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "Cite this research companion separately from the original papers and the manuscript."
+type: software
+title: "Face Fraud Atlas: A Research Companion for Face Fraud Detection and Digital Financial Security"
+authors:
+  - name: "Face Fraud Atlas contributors"
+repository-code: "https://github.com/xukun12138/face-fraud-atlas"
+url: "https://xukun12138.github.io/face-fraud-atlas/"
+version: "1.0.0"
+date-released: "2026-10-04"
+abstract: "A static research website with a searchable literature catalog, original-paper benchmark definitions, analytical risk tools, evaluation protocol templates and editable scientific figures. The accompanying manuscript is a research draft."

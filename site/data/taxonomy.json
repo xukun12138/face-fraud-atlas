@@ -1,0 +1,174 @@
+{
+  "schema_version": "1.0",
+  "scope_note": "Conceptual synthesis of protected assertions and compatible pathways. Citations support mechanisms and control assumptions, not a claim that every combination was tested in financial deployment. The claims are not independent scores or a security guarantee.",
+  "claims": [
+    {
+      "id": "media",
+      "label": "Media authenticity",
+      "description": "What evidence concerns the presentation or synthesis/alteration of media, and what can survive replay or processing?",
+      "source_keys": [
+        "R01",
+        "R02",
+        "R05",
+        "STD04",
+        "STD05"
+      ],
+      "title": "Media authenticity"
+    },
+    {
+      "id": "identity",
+      "label": "Identity consistency",
+      "description": "Does the claimant correspond to the claimed identity, and was the enrolled or documentary reference already contaminated?",
+      "source_keys": [
+        "S04",
+        "S05",
+        "S06",
+        "S30"
+      ],
+      "title": "Identity consistency"
+    },
+    {
+      "id": "capture",
+      "label": "Capture and session provenance",
+      "description": "Do capture, liveness, matching and challenge decisions refer to the same trusted, fresh event rather than substituted inputs?",
+      "source_keys": [
+        "S31",
+        "S32",
+        "STD02"
+      ],
+      "title": "Capture and session provenance"
+    },
+    {
+      "id": "authorization",
+      "label": "Valid business authorization",
+      "description": "Is the identity event bound to the intended account, privileges and requested action? Correct facial matching alone does not establish consent.",
+      "source_keys": [
+        "S31",
+        "STD02",
+        "STD03",
+        "STD06"
+      ],
+      "title": "Valid business authorization"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "print-and-replay",
+      "label": "Printed portraits and ordinary replay",
+      "description": "An artifact reaches the capture device. Reproduction and recapture cues depend on instrument and sensor.",
+      "entry": "sensor-facing presentation",
+      "production": "unmodified portrait or recording",
+      "reference_risk": "Probe presentation changes; the enrolled reference need not be altered.",
+      "claims": [
+        "media",
+        "identity",
+        "capture"
+      ],
+      "source_keys": [
+        "P01",
+        "P03",
+        "P04",
+        "P05"
+      ],
+      "title": "Printed portraits and ordinary replay"
+    },
+    {
+      "id": "mask-presentation",
+      "label": "Three-dimensional mask presentation",
+      "description": "A mask challenges planar assumptions and material/geometry evidence under the actual sensing configuration.",
+      "entry": "sensor-facing presentation",
+      "production": "manufactured physical instrument",
+      "reference_risk": "Impersonation may use an otherwise genuine victim reference.",
+      "claims": [
+        "media",
+        "identity",
+        "capture"
+      ],
+      "source_keys": [
+        "P15",
+        "P17",
+        "P44"
+      ],
+      "title": "Three-dimensional mask presentation"
+    },
+    {
+      "id": "synthetic-replay",
+      "label": "Generated or manipulated media replay",
+      "description": "Swapped, reenacted or generated content is displayed to a camera; synthesis and recapture are distinct observations.",
+      "entry": "sensor-facing presentation",
+      "production": "swap, reenactment or talking-face synthesis",
+      "reference_risk": "A claimed identity may be reproduced without contaminating its reference.",
+      "claims": [
+        "media",
+        "identity",
+        "capture"
+      ],
+      "source_keys": [
+        "G01",
+        "G03",
+        "G06",
+        "P09",
+        "S32"
+      ],
+      "title": "Generated or manipulated media replay"
+    },
+    {
+      "id": "media-injection",
+      "label": "Post-capture media injection",
+      "description": "A processing path supplies recorded or synthetic media without physical traces expected from presentation attacks.",
+      "entry": "post-capture injection",
+      "production": "unmodified or manipulated digital media",
+      "reference_risk": "Matching can accept an input whose capture provenance is invalid.",
+      "claims": [
+        "media",
+        "identity",
+        "capture",
+        "authorization"
+      ],
+      "source_keys": [
+        "S31",
+        "S32",
+        "STD02"
+      ],
+      "title": "Post-capture media injection"
+    },
+    {
+      "id": "reference-morph",
+      "label": "Morph-contaminated enrollment",
+      "description": "A multi-contributor portrait enters a reference before issuance. An authentic signature alone does not establish pre-signing identity correctness.",
+      "entry": "enrollment/reference boundary",
+      "production": "identity fusion",
+      "reference_risk": "A persistent reference can match multiple contributors; later genuine probes do not repair enrollment.",
+      "claims": [
+        "identity",
+        "authorization"
+      ],
+      "source_keys": [
+        "S04",
+        "S05",
+        "S06",
+        "S08"
+      ],
+      "title": "Morph-contaminated enrollment"
+    },
+    {
+      "id": "cross-side-substitution",
+      "label": "Cross-component sample substitution",
+      "description": "Liveness and matching accept different samples or events. Binding is needed even when both components report success.",
+      "entry": "cross-component association or substitution",
+      "production": "genuine or manipulated samples combined across events",
+      "reference_risk": "Approved capture can be associated with a different matching probe or account reference.",
+      "claims": [
+        "identity",
+        "capture",
+        "authorization"
+      ],
+      "source_keys": [
+        "S31",
+        "S32",
+        "STD02"
+      ],
+      "title": "Cross-component sample substitution"
+    }
+  ]
+}

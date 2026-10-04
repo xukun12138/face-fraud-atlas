@@ -1,0 +1,390 @@
+{
+  "schema_version": "1.0",
+  "scope_note": "Original-paper versions and units are preserved. Counts are not detector performance, financial outcomes or independent trial counts. Missing counts remain null. Streams, images, recordings and sequences must not be aggregated.",
+  "benchmarks": [
+    {
+      "id": "P04",
+      "citekey": "P04",
+      "name": "OULU-NPU",
+      "dataset": "OULU-NPU",
+      "year": 2017,
+      "version": "original paper; PAD access subset",
+      "identity_count": 55,
+      "identity_scope": "55 enrolled persons",
+      "real_count": 990,
+      "attack_count": 3960,
+      "total_count": 4950,
+      "unit": "video",
+      "modalities": [
+        "RGB"
+      ],
+      "protocol": "55 identities: train20/dev15/test20; four protocols vary environment, PAI, camera, and their combination",
+      "notes": [
+        "Access videos only; an additional990 bona fide enrollment videos make the full original collection5940 (1980 bona fide+3960 attack). Do not combine the access count with enrollment."
+      ],
+      "count_basis": "Access videos only; an additional990 bona fide enrollment videos make the full original collection5940 (1980 bona fide+3960 attack). Do not combine the access count with enrollment.",
+      "derivation": "55 subjects x3 sessions x6 phones=990 bona fide access videos;3960 attack videos explicit",
+      "source_url": "https://yty.kapsi.fi/papers/FG2017_OULU-NPU.pdf",
+      "source_location": "PDF pp.2-3 TableI and SectionIII.A; p.5 TableII",
+      "verified_on": "2026-10-04",
+      "count_discrepancy": false,
+      "additional_counts": {
+        "enrollment_count": 990,
+        "full_collection_including_enrollment": 5940
+      },
+      "evidence_level": "component-transfer"
+    },
+    {
+      "id": "P05",
+      "citekey": "P05",
+      "name": "SiW",
+      "dataset": "SiW",
+      "year": 2018,
+      "version": "original CVPR2018 paper",
+      "identity_count": 165,
+      "identity_scope": "165 recorded subjects",
+      "real_count": 1320,
+      "attack_count": 3300,
+      "total_count": 4620,
+      "unit": "video",
+      "modalities": [
+        "RGB"
+      ],
+      "protocol": "90 train/75 test subjects; protocol1 pose/expression, protocol2 display-medium holdout, protocol3 print/replay transfer",
+      "notes": [
+        "Original paper reports8 live and20 spoof videos per subject; later public-release totals are not substituted."
+      ],
+      "count_basis": "Original paper reports8 live and20 spoof videos per subject; later public-release totals are not substituted.",
+      "derivation": "165x8=1320;165x20=3300",
+      "source_url": "https://openaccess.thecvf.com/content_cvpr_2018/papers/Liu_Learning_Deep_Models_CVPR_2018_paper.pdf",
+      "source_location": "PDF p.6 Section4/Table1 and p.7 Table5",
+      "verified_on": "2026-10-04",
+      "count_discrepancy": false,
+      "additional_counts": {},
+      "evidence_level": "component-transfer"
+    },
+    {
+      "id": "P08",
+      "citekey": "P08",
+      "name": "SiW-M",
+      "dataset": "SiW-M",
+      "year": 2019,
+      "version": "original CVPR2019 paper",
+      "identity_count": 493,
+      "identity_scope": "493 bona fide subjects; not a verified count of all attack contributors",
+      "real_count": 660,
+      "attack_count": 968,
+      "total_count": 1630,
+      "unit": "video",
+      "modalities": [
+        "RGB"
+      ],
+      "protocol": "Leave-one-attack-type-out: train12 of13 types and80%live; test unseen type and20%live; live identities disjoint",
+      "notes": [
+        "The primary paper reports1630 total (Table1), but explicitly660 bona fide+968 attacks=1628 (Figure4 and text). Preserve this discrepancy; total is paper-reported, not reconciled.",
+        "primary-source discrepancy (2 videos)"
+      ],
+      "count_basis": "The primary paper reports1630 total (Table1), but explicitly660 bona fide+968 attacks=1628 (Figure4 and text). Preserve this discrepancy; total is paper-reported, not reconciled.",
+      "derivation": "13 attack-type counts sum968",
+      "source_url": "https://openaccess.thecvf.com/content_CVPR_2019/papers/Liu_Deep_Tree_Learning_for_Zero-Shot_Face_Anti-Spoofing_CVPR_2019_paper.pdf",
+      "source_location": "PDF p.3 Table1; p.5 attack total; p.6 Figure4 and text",
+      "verified_on": "2026-10-04",
+      "count_discrepancy": true,
+      "additional_counts": {
+        "class_sum": 1628
+      },
+      "evidence_level": "component-transfer"
+    },
+    {
+      "id": "P43",
+      "citekey": "P43",
+      "name": "CASIA-SURF",
+      "dataset": "CASIA-SURF",
+      "year": 2019,
+      "version": "original CVPR2019 paper",
+      "identity_count": 1000,
+      "identity_scope": "1000 recorded subjects",
+      "real_count": 3000,
+      "attack_count": 18000,
+      "total_count": 21000,
+      "unit": "video_stream",
+      "modalities": [
+        "RGB",
+        "depth",
+        "IR"
+      ],
+      "protocol": "300 train/100 validation/600 test subjects; subject-disjoint; synchronized three-channel capture",
+      "notes": [
+        "Counts are modality-specific streams:3 streams per synchronized presentation.7000 presentations=1000 bona fide+6000 attacks;21000 streams=3000+18000. Do not interpret21000 as independent presentations."
+      ],
+      "count_basis": "Counts are modality-specific streams:3 streams per synchronized presentation.7000 presentations=1000 bona fide+6000 attacks;21000 streams=3000+18000. Do not interpret21000 as independent presentations.",
+      "derivation": "1000 subjects x(1 bona fide+6 attacks)x3 modalities",
+      "source_url": "https://openaccess.thecvf.com/content_CVPR_2019/papers/Zhang_A_Dataset_and_Benchmark_for_Large-Scale_Multi-Modal_Face_Anti-Spoofing_CVPR_2019_paper.pdf",
+      "source_location": "PDF pp.3-4 Section3.3/Table2",
+      "verified_on": "2026-10-04",
+      "count_discrepancy": false,
+      "additional_counts": {
+        "presentation_total": 7000,
+        "streams_per_presentation": 3
+      },
+      "evidence_level": "component-transfer"
+    },
+    {
+      "id": "P15",
+      "citekey": "P15",
+      "name": "WMCA",
+      "dataset": "WMCA",
+      "year": 2020,
+      "version": "original TIFS paper (online2019; issue2020)",
+      "identity_count": 72,
+      "identity_scope": "72 recorded identities",
+      "real_count": 347,
+      "attack_count": 1332,
+      "total_count": 1679,
+      "unit": "multichannel_video",
+      "modalities": [
+        "RGB",
+        "depth",
+        "NIR",
+        "thermal"
+      ],
+      "protocol": "Subject/PAI-instrument-disjoint grandtest; seven leave-one-attack-type-out protocols",
+      "notes": [
+        "Counts are synchronized presentation recordings, each with four channels. Current author website1941 adds attack categories; it is not the original paper1679."
+      ],
+      "count_basis": "Counts are synchronized presentation recordings, each with four channels. Current author website1941 adds attack categories; it is not the original paper1679.",
+      "derivation": "Explicit count; TableIII category counts sum1679",
+      "source_url": "https://arxiv.org/pdf/1909.08848",
+      "source_location": "Author manuscript PDF p.7 SectionIV; pp.8-9 SectionIV.D/TableIII",
+      "verified_on": "2026-10-04",
+      "count_discrepancy": false,
+      "additional_counts": {
+        "channels_per_presentation": 4,
+        "dataset_introduction_year": 2019
+      },
+      "evidence_level": "component-transfer"
+    },
+    {
+      "id": "P19",
+      "citekey": "P19",
+      "name": "CASIA-SURF CeFA",
+      "dataset": "CASIA-SURF CeFA",
+      "year": 2021,
+      "version": "original WACV2021 paper",
+      "identity_count": 1607,
+      "identity_scope": "1500 2D-subset subjects plus107 3D-attack contributors",
+      "real_count": 4500,
+      "attack_count": 19038,
+      "total_count": 23538,
+      "unit": "video_stream",
+      "modalities": [
+        "RGB",
+        "depth",
+        "IR"
+      ],
+      "protocol": "Five protocols: cross-ethnicity, cross-PAI, cross-modality, cross-ethnicity&PAI, and ethnicity bias;200/100/200 subjects per ethnicity;3D attacks in test",
+      "notes": [
+        "Modality-specific streams:3 streams per presentation.2D subset18000 streams;3D subset5538 attacks. Presentation equivalents1500 bona fide+6346 attacks=7846."
+      ],
+      "count_basis": "Modality-specific streams:3 streams per presentation.2D subset18000 streams;3D subset5538 attacks. Presentation equivalents1500 bona fide+6346 attacks=7846.",
+      "derivation": "2D:1500x1x3=4500 real;1500x3x3=13500 attacks;3D:5346+192=5538;attack total19038",
+      "source_url": "https://openaccess.thecvf.com/content/WACV2021/papers/Liu_CASIA-SURF_CeFA_A_Benchmark_for_Multi-Modal_Cross-Ethnicity_Face_Anti-Spoofing_WACV_2021_paper.pdf",
+      "source_location": "PDF p.3 Tables2/3; p.4 Table4",
+      "verified_on": "2026-10-04",
+      "count_discrepancy": false,
+      "additional_counts": {
+        "presentation_total": 7846,
+        "streams_per_presentation": 3
+      },
+      "evidence_level": "component-transfer"
+    },
+    {
+      "id": "P16",
+      "citekey": "P16",
+      "name": "CelebA-Spoof",
+      "dataset": "CelebA-Spoof",
+      "year": 2020,
+      "version": "original ECCV2020 paper",
+      "identity_count": 10177,
+      "identity_scope": "10177 celebrity subjects",
+      "real_count": null,
+      "attack_count": null,
+      "total_count": 625537,
+      "unit": "image",
+      "modalities": [
+        "RGB"
+      ],
+      "protocol": "Subject-disjoint train/validation/test approximately8:1:1;43 attributes",
+      "notes": [
+        "Exact real/attack image counts are not explicit in the verified original paper. Rounded Figure4 shares (24%/76%) must not be converted to exact integer counts."
+      ],
+      "count_basis": "Exact real/attack image counts are not explicit in the verified original paper. Rounded Figure4 shares (24%/76%) must not be converted to exact integer counts.",
+      "derivation": "",
+      "source_url": "https://arxiv.org/pdf/2007.12342",
+      "source_location": "Author manuscript PDF pp.1/3 dataset scale; p.7 Section3.3/Figure4",
+      "verified_on": "2026-10-04",
+      "count_discrepancy": false,
+      "additional_counts": {},
+      "evidence_level": "component-transfer"
+    },
+    {
+      "id": "D01",
+      "citekey": "D01",
+      "name": "FaceForensics++",
+      "dataset": "FaceForensics++",
+      "year": 2019,
+      "version": "original ICCV2019 paper",
+      "identity_count": null,
+      "identity_scope": "Unique person identity count not explicitly established",
+      "real_count": 1000,
+      "attack_count": 4000,
+      "total_count": 5000,
+      "unit": "video",
+      "modalities": [
+        "RGB"
+      ],
+      "protocol": "720/140/140 pristine source-video train/validation/test; corresponding manipulations stay within the source split; compression variants c0/c23/c40",
+      "notes": [
+        "1000 pristine source videos and four manipulation methods. Compressed variants do not create additional independent source videos."
+      ],
+      "count_basis": "1000 pristine source videos and four manipulation methods. Compressed variants do not create additional independent source videos.",
+      "derivation": "1000 x4 methods=4000 manipulated videos",
+      "source_url": "https://openaccess.thecvf.com/content_ICCV_2019/papers/Rossler_FaceForensics_Learning_to_Detect_Manipulated_Facial_Images_ICCV_2019_paper.pdf",
+      "source_location": "PDF p.4 Section3; p.5 Section4",
+      "verified_on": "2026-10-04",
+      "count_discrepancy": false,
+      "additional_counts": {},
+      "evidence_level": "component-transfer"
+    },
+    {
+      "id": "D02",
+      "citekey": "D02",
+      "name": "Celeb-DF (v2)",
+      "dataset": "Celeb-DF (v2)",
+      "year": 2020,
+      "version": "CVPR2020 paper v2 celebrity subset",
+      "identity_count": 59,
+      "identity_scope": "59 celebrity source identities",
+      "real_count": 590,
+      "attack_count": 5639,
+      "total_count": 6229,
+      "unit": "video",
+      "modalities": [
+        "RGB"
+      ],
+      "protocol": "Authors release a518-video test list; include source/identity separation in any new protocol",
+      "notes": [
+        "Original paper celebrity subset:590 real+5639 fake. Author repository additionally distributes300 YouTube-real videos; these are outside this paper-subset count."
+      ],
+      "count_basis": "Original paper celebrity subset:590 real+5639 fake. Author repository additionally distributes300 YouTube-real videos; these are outside this paper-subset count.",
+      "derivation": "590+5639=6229",
+      "source_url": "https://openaccess.thecvf.com/content_CVPR_2020/papers/Li_Celeb-DF_A_Large-Scale_Challenging_Dataset_for_DeepFake_Forensics_CVPR_2020_paper.pdf",
+      "source_location": "CVPR PDF p.4 Section3.1/Table1; author release README dataset structure",
+      "verified_on": "2026-10-04",
+      "count_discrepancy": false,
+      "additional_counts": {
+        "additional_release_real_videos": 300,
+        "test_list_count": 518
+      },
+      "evidence_level": "component-transfer"
+    },
+    {
+      "id": "D03",
+      "citekey": "D03",
+      "name": "DeeperForensics-1.0",
+      "dataset": "DeeperForensics-1.0",
+      "year": 2020,
+      "version": "original CVPR2020 full corpus",
+      "identity_count": 100,
+      "identity_scope": "100 consented captured source actors; not the union of all reference-video identities",
+      "real_count": 50000,
+      "attack_count": 10000,
+      "total_count": 60000,
+      "unit": "video",
+      "modalities": [
+        "RGB"
+      ],
+      "protocol": "Standard benchmark1000 raw swaps+1000 FF++ reference videos;7:1:2 identity-disjoint split;400-video hidden set",
+      "notes": [
+        "10000 manipulated entries include perturbation variants of1000 raw swaps. Full60000-video corpus differs from the2000-video standard benchmark."
+      ],
+      "count_basis": "10000 manipulated entries include perturbation variants of1000 raw swaps. Full60000-video corpus differs from the2000-video standard benchmark.",
+      "derivation": "50000 real+10000 manipulation/perturbation variants",
+      "source_url": "https://openaccess.thecvf.com/content_CVPR_2020/papers/Jiang_DeeperForensics-1.0_A_Large-Scale_Dataset_for_Real-World_Face_Forgery_Detection_CVPR_2020_paper.pdf",
+      "source_location": "PDF p.2 Table1; p.6 Sections3.3/3.4/4; p.7 hidden set",
+      "verified_on": "2026-10-04",
+      "count_discrepancy": false,
+      "additional_counts": {
+        "hidden_set_count": 400,
+        "raw_manipulations": 1000,
+        "standard_benchmark_total": 2000
+      },
+      "evidence_level": "component-transfer"
+    },
+    {
+      "id": "D04",
+      "citekey": "D04",
+      "name": "WildDeepfake",
+      "dataset": "WildDeepfake",
+      "year": 2020,
+      "version": "original ACM MM2020 paper",
+      "identity_count": null,
+      "identity_scope": "Unique identities not reported",
+      "real_count": null,
+      "attack_count": null,
+      "total_count": 7314,
+      "unit": "face_sequence",
+      "modalities": [
+        "RGB"
+      ],
+      "protocol": "6508 training/806 test sequences; similarity-based split, not verified identity-disjoint",
+      "notes": [
+        "7314 extracted face sequences contain1180099 face images;707 internet deepfake source videos. Exact class counts are not explicit in verified primary material. Sequence, frame, and whole-video counts are different units."
+      ],
+      "count_basis": "7314 extracted face sequences contain1180099 face images;707 internet deepfake source videos. Exact class counts are not explicit in verified primary material. Sequence, frame, and whole-video counts are different units.",
+      "derivation": "6508+806=7314",
+      "source_url": "https://arxiv.org/pdf/2101.01456",
+      "source_location": "Author manuscript PDF p.5 data processing/annotation; author repository overview",
+      "verified_on": "2026-10-04",
+      "count_discrepancy": false,
+      "additional_counts": {
+        "deepfake_source_video_count": 707,
+        "face_image_count": 1180099
+      },
+      "evidence_level": "component-transfer"
+    },
+    {
+      "id": "D05",
+      "citekey": "D05",
+      "name": "DFDC",
+      "dataset": "DFDC",
+      "year": 2020,
+      "version": "original author report arXiv v4 (2020-10-28)",
+      "identity_count": 960,
+      "identity_scope": "960 benchmark identities (Table1);3426 refers to the broader raw acquisition pool",
+      "real_count": 23654,
+      "attack_count": 104500,
+      "total_count": 128154,
+      "unit": "video",
+      "modalities": [
+        "RGB",
+        "audio"
+      ],
+      "protocol": "Public4000-video and private10000-video competition tests; full benchmark Table1 scope",
+      "notes": [
+        "128154 total and104500 fake videos are explicit in Table1; real23654 is their arithmetic difference.48190 raw source recordings from3426 actors are a separate collection scope. Audio present and audio manipulations discussed; not all benchmark examples imply speech."
+      ],
+      "count_basis": "128154 total and104500 fake videos are explicit in Table1; real23654 is their arithmetic difference.48190 raw source recordings from3426 actors are a separate collection scope. Audio present and audio manipulations discussed; not all benchmark examples imply speech.",
+      "derivation": "128154-104500=23654",
+      "source_url": "https://arxiv.org/pdf/2006.07397",
+      "source_location": "PDF p.3 Table1; p.4 Sections3.1/3.2 and test-set description",
+      "verified_on": "2026-10-04",
+      "count_discrepancy": false,
+      "additional_counts": {
+        "broader_acquisition_actor_count": 3426,
+        "broader_raw_source_video_count": 48190
+      },
+      "evidence_level": "component-transfer"
+    }
+  ]
+}

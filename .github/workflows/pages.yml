@@ -1,0 +1,85 @@
+name: Deploy Face Fraud Atlas
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v6
+
+      - name: Generate browser data
+        run: python3 scripts/build_catalog.py
+
+      - name: Validate linked resources and source records
+        run: python3 scripts/validate_site.py
+
+      - name: Check interface exports and analytical boundaries
+        run: |
+          node --check site/app.js
+          node --check site/i18n.js
+          node scripts/test_app.mjs
+
+      - name: Validate static bundle
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          site = Path('site')
+          assert (site / 'index.html').is_file(), 'Missing site/index.html'
+          contracts = {
+              'catalog.json': ('papers',),
+              'benchmarks.json': ('benchmarks',),
+              'taxonomy.json': ('claims', 'scenarios'),
+              'assets.json': ('figures', 'downloads'),
+          }
+          for name, array_keys in contracts.items():
+              document = json.loads((site / 'data' / name).read_text(encoding='utf-8'))
+              for key in array_keys:
+                  assert isinstance(document.get(key), list), f'{name}: {key} must be an array'
+          json.loads((site / 'data' / 'stats.json').read_text(encoding='utf-8'))
+          catalog = json.loads((site / 'data' / 'catalog.json').read_text(encoding='utf-8'))['papers']
+          ids = [record['id'] for record in catalog]
+          assert all(ids) and len(ids) == len(set(ids)), 'Missing or duplicate catalog IDs'
+          for path in site.rglob('*.json'):
+              json.loads(path.read_text(encoding='utf-8'))
+          assert not any(path.is_symlink() for path in site.rglob('*')), 'Pages bundle contains symbolic links'
+          (site / '.nojekyll').touch()
+          print(f'Validated static bundle with {len(catalog)} catalog records.')
+          PY
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: site/
+          include-hidden-files: true
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

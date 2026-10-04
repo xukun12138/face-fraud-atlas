@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "search_cutoff": "2026-10-04",
+  "total_records": 153,
+  "research_records": 141,
+  "official_resources": 12,
+  "benchmarks": 12,
+  "core_venue_records": 120,
+  "core_venue_percent": 85.1,
+  "preprint_records": 1,
+  "preprint_percent": 0.71,
+  "preprint_ids": [
+    "D05"
+  ],
+  "workshop_ids": [
+    "P41",
+    "S11",
+    "S12"
+  ],
+  "chapter_ids": [
+    "R13"
+  ],
+  "role_order": [
+    "PAD",
+    "digital",
+    "generation",
+    "morph",
+    "adversarial",
+    "systems/privacy",
+    "surveys"
+  ],
+  "role_counts": {
+    "PAD": 43,
+    "adversarial": 8,
+    "digital": 45,
+    "generation": 8,
+    "morph": 9,
+    "surveys": 15,
+    "systems/privacy": 13
+  },
+  "year_counts": {
+    "2012": 1,
+    "2014": 1,
+    "2015": 2,
+    "2016": 3,
+    "2017": 2,
+    "2018": 3,
+    "2019": 10,
+    "2020": 23,
+    "2021": 19,
+    "2022": 19,
+    "2023": 18,
+    "2024": 13,
+    "2025": 18,
+    "2026": 9
+  },
+  "publication_form_counts": {
+    "article": 30,
+    "chapter": 1,
+    "conference": 106,
+    "preprint": 1,
+    "workshop": 3
+  },
+  "evidence_level_counts": {
+    "component-transfer": 104,
+    "context": 32,
+    "direct-system": 2,
+    "identity-verification": 3
+  },
+  "counting_note": "Counts describe this selected corpus, not field-wide prevalence, research quality, detector performance or financial incident frequency.",
+  "core_venue_note": "Project-selected flag, not a universal ranking. Workshops, the book chapter and the sole technical report retain their actual status."
+}

@@ -1,0 +1,157 @@
+{
+  "schema_version": "1.0",
+  "figures": [
+    {
+      "id": "Fig1",
+      "title": "Financial workflow and attack entry points",
+      "title_zh": "金融身份工作流与攻击入口",
+      "data_type": "conceptual",
+      "description": "The identity relationship is established before an action is authorized. Follow reference enrollment, fresh capture, media evidence, identity matching, decision policy and recovery through one financial workflow.",
+      "source": "https://github.com/xukun12138/face-fraud-atlas/tree/main/Figure_Data/Fig1_Workflow",
+      "source_folder": "Figure_Data/Fig1_Workflow",
+      "png": "assets/figures/figure-01-workflow.png",
+      "pdf": "assets/figures/figure-01-workflow.pdf",
+      "svg": "assets/figures/figure-01-workflow.svg"
+    },
+    {
+      "id": "Fig2",
+      "title": "Composition of the selected literature",
+      "title_zh": "文献选集的主题与发表分布",
+      "data_type": "catalog-derived",
+      "description": "Topic and year distributions describe the selected 141 research records. The radial chart is a count profile of this collection, not a ranking of methods or a census of the field.",
+      "source": "https://github.com/xukun12138/face-fraud-atlas/tree/main/Figure_Data/Fig2_Corpus",
+      "source_folder": "Figure_Data/Fig2_Corpus",
+      "png": "assets/figures/figure-02-corpus.png",
+      "pdf": "assets/figures/figure-02-corpus.pdf",
+      "svg": "assets/figures/figure-02-corpus.svg"
+    },
+    {
+      "id": "Fig3",
+      "title": "A taxonomy of face fraud across trust boundaries",
+      "title_zh": "跨越信任边界的人脸欺诈分类",
+      "data_type": "conceptual",
+      "description": "Attack entry and media production are separate axes. Printed portraits, replay, masks and digitally manipulated media can cross different trust boundaries.",
+      "source": "https://github.com/xukun12138/face-fraud-atlas/tree/main/Figure_Data/Fig3_Taxonomy",
+      "source_folder": "Figure_Data/Fig3_Taxonomy",
+      "png": "assets/figures/figure-03-taxonomy.png",
+      "pdf": "assets/figures/figure-03-taxonomy.pdf",
+      "svg": "assets/figures/figure-03-taxonomy.svg"
+    },
+    {
+      "id": "Fig4",
+      "title": "Detection evidence and its prerequisites",
+      "title_zh": "检测证据与适用前提",
+      "data_type": "conceptual",
+      "description": "Eight families of detection evidence are shown alongside their prerequisites. The image examples are synthetic illustrations rather than measured feature maps or detector predictions.",
+      "source": "https://github.com/xukun12138/face-fraud-atlas/tree/main/Figure_Data/Fig4_Evidence",
+      "source_folder": "Figure_Data/Fig4_Evidence",
+      "png": "assets/figures/figure-04-evidence.png",
+      "pdf": "assets/figures/figure-04-evidence.pdf",
+      "svg": "assets/figures/figure-04-evidence.svg"
+    },
+    {
+      "id": "Fig5",
+      "title": "Morphing and the integrity of identity references",
+      "title_zh": "人脸融合与身份参考的完整性",
+      "data_type": "conceptual",
+      "description": "Morphing can contaminate identity references before issuance. A legitimately signed document can preserve the provenance of a reference without establishing that the reference represents one true identity.",
+      "source": "https://github.com/xukun12138/face-fraud-atlas/tree/main/Figure_Data/Fig5_Morph",
+      "source_folder": "Figure_Data/Fig5_Morph",
+      "png": "assets/figures/figure-05-morph.png",
+      "pdf": "assets/figures/figure-05-morph.pdf",
+      "svg": "assets/figures/figure-05-morph.svg"
+    },
+    {
+      "id": "Fig6",
+      "title": "Benchmark units, modalities and reported composition",
+      "title_zh": "基准的计数单位、模态与组成",
+      "data_type": "source-derived",
+      "description": "Sample composition is grouped by original counting unit, alongside a modality matrix. Stream, image, recording and sequence counts retain their original-paper definitions and missing class counts.",
+      "source": "https://github.com/xukun12138/face-fraud-atlas/tree/main/Figure_Data/Fig6_Benchmarks",
+      "source_folder": "Figure_Data/Fig6_Benchmarks",
+      "png": "assets/figures/figure-06-benchmarks.png",
+      "pdf": "assets/figures/figure-06-benchmarks.pdf",
+      "svg": "assets/figures/figure-06-benchmarks.svg"
+    },
+    {
+      "id": "Fig7",
+      "title": "Five axes of separation in evaluation",
+      "title_zh": "评估中需要隔离的五类因素",
+      "data_type": "conceptual",
+      "description": "Evaluation separates identity, original source, generator, device or channel, and time. Threshold selection and target-domain permissions remain explicit design choices.",
+      "source": "https://github.com/xukun12138/face-fraud-atlas/tree/main/Figure_Data/Fig7_Protocol",
+      "source_folder": "Figure_Data/Fig7_Protocol",
+      "png": "assets/figures/figure-07-protocol.png",
+      "pdf": "assets/figures/figure-07-protocol.pdf",
+      "svg": "assets/figures/figure-07-protocol.svg"
+    },
+    {
+      "id": "Fig8",
+      "title": "Base rates, operating points and review burden",
+      "title_zh": "基率、工作点与复核负担",
+      "data_type": "analytical scenarios",
+      "description": "Analytical curves connect prevalence and operating points to alert precision and review burden. Confidence and repeated-attempt analyses retain their stated sampling assumptions.",
+      "source": "https://github.com/xukun12138/face-fraud-atlas/tree/main/Figure_Data/Fig8_Risk",
+      "source_folder": "Figure_Data/Fig8_Risk",
+      "png": "assets/figures/figure-08-risk.png",
+      "pdf": "assets/figures/figure-08-risk.pdf",
+      "svg": "assets/figures/figure-08-risk.svg"
+    },
+    {
+      "id": "Fig9",
+      "title": "Binding facial evidence to a protected action",
+      "title_zh": "将人脸证据绑定到受保护的业务动作",
+      "data_type": "conceptual",
+      "description": "Capture, liveness, matching and a protected action need evidence from the same event. The architecture illustrates binding and review controls, without claiming a certified implementation.",
+      "source": "https://github.com/xukun12138/face-fraud-atlas/tree/main/Figure_Data/Fig9_Architecture",
+      "source_folder": "Figure_Data/Fig9_Architecture",
+      "png": "assets/figures/figure-09-architecture.png",
+      "pdf": "assets/figures/figure-09-architecture.pdf",
+      "svg": "assets/figures/figure-09-architecture.svg"
+    },
+    {
+      "id": "Fig10",
+      "title": "Research priorities across the evidence chain",
+      "title_zh": "证据链上的研究议程",
+      "data_type": "conceptual",
+      "description": "Research opportunities connect detector robustness to references, provenance, authorization and accessible recovery. The agenda is a conceptual synthesis, not a numerical priority ranking.",
+      "source": "https://github.com/xukun12138/face-fraud-atlas/tree/main/Figure_Data/Fig10_Agenda",
+      "source_folder": "Figure_Data/Fig10_Agenda",
+      "png": "assets/figures/figure-10-agenda.png",
+      "pdf": "assets/figures/figure-10-agenda.pdf",
+      "svg": "assets/figures/figure-10-agenda.svg"
+    }
+  ],
+  "downloads": [
+    {
+      "id": "paper",
+      "title": "Research draft (35 pages)",
+      "href": "downloads/manuscript.pdf"
+    },
+    {
+      "id": "latex",
+      "title": "Complete LaTeX project",
+      "href": "downloads/latex-project.zip"
+    },
+    {
+      "id": "figures",
+      "title": "Editable figures and data",
+      "href": "downloads/Figure_Data.zip"
+    },
+    {
+      "id": "bibtex",
+      "title": "Verified references",
+      "href": "downloads/sample-base.bib"
+    },
+    {
+      "id": "catalog",
+      "title": "Structured literature catalog",
+      "href": "downloads/paper-catalog.csv"
+    },
+    {
+      "id": "benchmarks",
+      "title": "Benchmark data and counting definitions",
+      "href": "downloads/benchmark-catalog.csv"
+    }
+  ]
+}

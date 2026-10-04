@@ -1,0 +1,67 @@
+name: Correct data or interpretation
+description: Report a bibliographic, benchmark-count, version, source, or scientific interpretation issue.
+title: "[Data correction] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A precise correction should identify the record, current value, proposed value, and primary evidence. Missing or contradictory information can remain unknown. Please do not upload private biometric media or copyrighted papers.
+  - type: input
+    id: record
+    attributes:
+      label: Record ID or affected file/module
+      placeholder: "D01; benchmark ID; figure number; calculator; file path"
+    validations:
+      required: true
+  - type: dropdown
+    id: correction_type
+    attributes:
+      label: Type of correction
+      options:
+        - Title / authors / venue / year / pages
+        - Dataset count / identity scope / unit
+        - Dataset version / modality / split or protocol
+        - Source link / verification status / reading status
+        - Method prerequisite / financial interpretation
+        - Formula / denominator / analytical assumption
+        - Figure data / label / source attribution
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: Current value or wording
+      description: Quote the smallest relevant field or sentence; identify where it appears.
+    validations:
+      required: true
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed value or explanation
+      description: Include a unit and version for counts. If the source is inconsistent, explain the disagreement rather than forcing a number.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Primary evidence and location
+      description: Give URLs and exact page, section, table, or equation. For calculator issues, provide inputs, expected calculation, and the relevant assumption.
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Affected exports or interpretation
+      description: Explain whether the correction affects statistics, plots, CSV/JSON exports, manuscript claims, or only one field.
+    validations:
+      required: false
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Scope checks
+      options:
+        - label: I distinguished source facts from my interpretation and identified any remaining uncertainty.
+          required: true
+        - label: For counts, I checked that the proposed unit and version match the cited source (or this correction is not about counts).
+          required: true

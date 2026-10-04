@@ -1,0 +1,97 @@
+name: Add a paper or resource
+description: Suggest a source-backed publication or official resource for the atlas.
+title: "[Catalog addition] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please supply primary evidence: publisher, official proceedings, original paper, or an authors' resource page. Catalog inclusion is curation, not an endorsement or a publication-status claim. Do not include private biometric media.
+  - type: input
+    id: title
+    attributes:
+      label: Full title
+      placeholder: Exact title from the primary source
+    validations:
+      required: true
+  - type: textarea
+    id: authors
+    attributes:
+      label: Authors or issuing organization
+      description: Preserve the source's names. For an official resource, give the responsible organization.
+    validations:
+      required: true
+  - type: input
+    id: venue_year
+    attributes:
+      label: Venue and formal publication year
+      description: Distinguish proceedings publication from preprint or acceptance dates. Write unknown when unverified.
+      placeholder: "CVPR 2024, main conference; pages if verified"
+    validations:
+      required: true
+  - type: dropdown
+    id: publication_type
+    attributes:
+      label: Publication type
+      options:
+        - Journal article
+        - Main-conference paper
+        - Workshop paper
+        - Book chapter
+        - Official standard or guidance
+        - Preprint or technical report
+        - Accepted author manuscript without verified publication metadata
+        - Uncertain
+    validations:
+      required: true
+  - type: textarea
+    id: primary_sources
+    attributes:
+      label: Primary sources and exact locations
+      description: Include source URLs plus relevant page, section, table, or bibliographic entry. Explain which fields each source verifies.
+    validations:
+      required: true
+  - type: dropdown
+    id: task
+    attributes:
+      label: Main research task
+      options:
+        - Presentation attack detection / face anti-spoofing
+        - Digital manipulation detection
+        - Morphing / identity-reference integrity
+        - Recognition evasion / adversarial security
+        - Capture or session injection / provenance
+        - Generation or threat capability
+        - Survey / evaluation / official resource
+        - Cross-task or uncertain
+    validations:
+      required: true
+  - type: textarea
+    id: mechanism
+    attributes:
+      label: Mechanism and prerequisites
+      description: Briefly explain the evidence used, modality, trusted references, learning permissions, target-data access, and relevant constraints. Summarize in your own words.
+    validations:
+      required: true
+  - type: textarea
+    id: financial_relevance
+    attributes:
+      label: Financial relevance and its evidence
+      description: Identify direct financial-system evidence, remote identity-verification research, or an analytical transfer from general benchmarks. State the protected assertion and a material limitation.
+    validations:
+      required: true
+  - type: textarea
+    id: duplicate_version
+    attributes:
+      label: Existing record or version relationship
+      description: If this updates an existing preprint, give its catalog ID. An optional code or dataset link can also be added here.
+    validations:
+      required: false
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Evidence checks
+      options:
+        - label: I searched the existing catalog and identified any duplicate or newer-version relationship.
+          required: true
+        - label: I separated verified metadata from uncertain fields and did not invent performance or financial deployment claims.
+          required: true

@@ -1,0 +1,164 @@
+/* Styles for data-driven components. Uses the site's light/dark design tokens. */
+
+.card-eyebrow {
+  color: var(--accent);
+  font: 600 10px/1.6 Consolas, "Courier New", monospace;
+  letter-spacing: .65px;
+  margin: 0;
+}
+.paper-card { min-width: 0; padding: 25px; }
+.paper-card .paper-title { margin: 14px 0 12px; font-size: 18px; line-height: 1.45; overflow-wrap: anywhere; }
+.paper-authors { font-size: 11px; line-height: 1.7; margin-bottom: 9px; color: var(--muted); }
+.paper-card .card-meta { font-size: 11px; line-height: 1.75; margin-bottom: 15px; overflow-wrap: anywhere; }
+.badges { display: flex; flex-wrap: wrap; gap: 7px; width: 100%; margin-bottom: 19px; }
+.badge {
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  padding: 4px 9px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  color: var(--muted);
+  background: var(--bg);
+  font-size: 10px;
+  line-height: 1.6;
+  letter-spacing: .1px;
+  overflow-wrap: anywhere;
+}
+.badge.core { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 25%, var(--line)); }
+.badge.official { color: var(--gold); }
+.paper-card .paper-actions { flex-wrap: wrap; width: 100%; gap: 12px 20px; padding-top: 0; }
+.paper-actions .button { min-height: 38px; padding: 9px 13px; font-size: 11px; }
+.source-link { color: var(--accent); font-size: 11px; line-height: 1.7; overflow-wrap: anywhere; }
+.source-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+.empty-state {
+  grid-column: 1 / -1;
+  width: 100%;
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  color: var(--muted);
+  padding: 35px 24px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.empty-state.error { color: var(--gold); border-style: solid; }
+
+.detail-facts { display: grid; grid-template-columns: minmax(110px, 24%) minmax(0, 1fr); gap: 11px 22px; margin: 22px 0; }
+.detail-facts dt { color: var(--muted); font-size: 11px; line-height: 1.75; }
+.detail-facts dd { margin: 0; font-size: 13px; line-height: 1.75; color: var(--text); overflow-wrap: anywhere; }
+.detail-paragraph { white-space: pre-line; line-height: 1.9; overflow-wrap: anywhere; }
+.scope-note { color: var(--muted); font-size: 11px; line-height: 1.85; overflow-wrap: anywhere; }
+.paper-detail-body { position: relative; padding-top: 5px; }
+.paper-detail-body > .card-eyebrow { padding-right: 105px; }
+#paper-detail .dialog-close {
+  position: absolute;
+  right: -8px;
+  top: -10px;
+  font-size: 12px;
+  line-height: 1.4;
+  min-width: 74px;
+  min-height: 44px;
+  padding: 8px 11px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--bg);
+}
+#paper-detail .dialog-close:hover { color: var(--text); border-color: var(--accent); }
+.bibtex-detail { margin-top: 25px; border-top: 1px solid var(--line); padding-top: 18px; }
+.bibtex-detail summary { cursor: pointer; font-size: 12px; color: var(--accent); padding: 5px 0; }
+.bibtex-detail pre { line-height: 1.8; tab-size: 2; }
+
+#benchmark-comparison {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--panel);
+  margin-bottom: 42px;
+}
+#benchmark-comparison > .scope-note { margin: 0; padding: 17px 21px 0; }
+#benchmark-comparison > .category-note { padding-bottom: 20px; }
+.data-table { width: 100%; border-collapse: collapse; color: var(--muted); font-size: 12px; text-align: left; }
+.data-table th, .data-table td { padding: 15px 17px; border-bottom: 1px solid var(--line); vertical-align: top; line-height: 1.8; overflow-wrap: anywhere; }
+.data-table thead th { color: var(--text); background: var(--panel2); font-weight: 600; font-size: 11px; }
+.data-table tbody th { color: var(--text); font-weight: 500; }
+.data-table tbody tr:last-child > * { border-bottom: 0; }
+.data-table tbody tr:hover { background: color-mix(in srgb, var(--panel2) 50%, transparent); }
+.data-table a { color: var(--accent); text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--accent) 35%, transparent); text-underline-offset: 4px; }
+.comparison-table { table-layout: fixed; min-width: 550px; }
+.comparison-table tr > :first-child { width: 23%; }
+.comparison-table tr > :not(:first-child) { width: 38.5%; }
+#benchmarks-table .data-table { min-width: 790px; }
+#benchmarks-table .data-table th:first-child { min-width: 135px; }
+#benchmarks-table .data-table td:nth-child(4) { min-width: 100px; }
+
+#risk-results { display: block; }
+.risk-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.risk-metric { min-width: 0; border: 1px solid var(--line); border-radius: 9px; background: var(--bg); padding: 15px 12px 13px; }
+#risk-results .metric-label { display: block; font-size: 10px; line-height: 1.65; min-height: 32px; color: var(--muted); }
+#risk-results .metric-value {
+  display: block;
+  font-size: clamp(18px, 2.05vw, 25px);
+  line-height: 1.35;
+  color: var(--accent);
+  letter-spacing: -.5px;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+#risk-results > .scope-note { margin: 15px 0 0; font-size: 10px; }
+.risk-chart svg { display: block; width: 100%; height: auto; overflow: visible; font-family: var(--body); }
+.input-grid [aria-invalid="true"] { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold); }
+#protocol-preview { margin-top: 17px; padding: 13px 15px; border-left: 2px solid var(--gold); background: var(--bg); color: var(--muted); font-size: 11px; line-height: 1.8; }
+
+.scenario-facts { margin: 19px 0 24px; }
+.scenario-claims { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px; margin: 15px 0 21px; }
+.claim-card { min-width: 0; border: 1px solid var(--line); border-top: 2px solid var(--accent); border-radius: 8px; background: var(--bg); padding: 17px 19px; }
+.claim-card:nth-child(2) { border-top-color: var(--blue); }
+.claim-card:nth-child(3) { border-top-color: var(--gold); }
+.claim-card:nth-child(4) { border-top-color: var(--purple); }
+.claim-card h4 { font-size: 14px; line-height: 1.45; margin: 0 0 10px; }
+.claim-card p { font-size: 12px; line-height: 1.8; margin-bottom: 14px; }
+.scenario-detail > h4 { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
+
+.figure-card { min-width: 0; display: flex; flex-direction: column; transition: border-color .2s; }
+.figure-card:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+.figure-image-link { display: block; width: 100%; background: white; }
+.figure-card .figure-preview { width: 100%; aspect-ratio: 2 / 1; object-fit: contain; padding: 7px; }
+.figure-card .figure-body { display: flex; flex-direction: column; flex: 1; padding: 23px 25px 25px; }
+.figure-card .figure-body h3 { font-size: 21px; line-height: 1.4; margin: 13px 0 12px; overflow-wrap: anywhere; }
+.figure-card .figure-body p { font-size: 12px; line-height: 1.85; margin-bottom: 18px; overflow-wrap: anywhere; }
+.figure-card .figure-type { color: var(--gold); text-transform: none; font-size: 10px; }
+.figure-card .figure-actions { gap: 8px; margin-top: auto; padding-top: 4px; }
+.figure-actions .button { min-height: 36px; padding: 8px 12px; font-size: 11px; gap: 5px; }
+
+@media (max-width: 930px) {
+  .paper-card { padding: 22px; }
+  .risk-metrics { gap: 11px; }
+  .risk-metric { padding: 16px; }
+}
+@media (max-width: 640px) {
+  .paper-card { padding: 21px; }
+  .paper-card .paper-title { font-size: 17px; }
+  .paper-actions .button { font-size: 11px; }
+  .badges { margin-bottom: 17px; }
+  .detail-facts { grid-template-columns: minmax(82px, 29%) minmax(0, 1fr); gap: 9px 13px; }
+  .detail-facts dd { font-size: 12px; }
+  .risk-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+  .risk-metric { padding: 13px 11px; }
+  #risk-results .metric-label { font-size: 10px; min-height: 32px; }
+  #risk-results .metric-value { font-size: 21px; }
+  .scenario-claims { grid-template-columns: 1fr; }
+  .claim-card { padding: 17px; }
+  .figure-card .figure-body { padding: 21px; }
+  .figure-card .figure-body h3 { font-size: 20px; }
+  .data-table th, .data-table td { padding: 13px 14px; font-size: 11px; }
+  #benchmark-comparison > .scope-note { padding-left: 17px; padding-right: 17px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .figure-card { transition: none; }
+}
